@@ -33,5 +33,7 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "global-require": "off"
   },
 }
