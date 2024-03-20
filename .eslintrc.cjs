@@ -34,6 +34,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
     "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
-    "global-require": "off"
+    "global-require": "off",
+    'eslintimport/no-extraneous-dependencies': 'off',
   },
 }
