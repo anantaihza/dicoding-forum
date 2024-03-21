@@ -10,15 +10,31 @@ export default function Home() {
   return (
     <div className="bg-base-100">
       <Navbar />
-      <div className="pt-32 container px-28 mx-auto flex gap-12">
+      <div className="pt-32 container px-10 md:px-16 lg:px-28 mx-auto flex gap-12">
         <div>
-          <div className="flex justify-between">
+          <div className="flex justify-between flex-col md:flex-row gap-y-3 mb-4">
             <TitleHome />
             <ButtonCreate />
           </div>
+          <label className="form-control w-full max-w-xs block xl:hidden" htmlFor="category">
+            <div className="label">
+              <span className="label-text">
+                Filter Kategori
+              </span>
+            </div>
+            <select id="category" className="select select-sm w-full max-w-xs bg-white">
+              <option selected>
+                All
+              </option>
+              <option>Redux</option>
+              <option>Small Orange</option>
+              <option>Small Tomato</option>
+            </select>
+          </label>
+
           <ListThreads />
         </div>
-        <div className="flex flex-col gap-8 mt-20">
+        <div className="flex-col xl:gap-8 mt-20 hidden xl:flex">
           <CategoryPopular />
           <FlashLeaderboard />
         </div>

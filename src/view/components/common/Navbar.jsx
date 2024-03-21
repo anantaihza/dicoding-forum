@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   return (
-    <div className="navbar bg-white px-28 py-4 fixed top-0 text-neutral z-50 shadow-sm">
+    <div className="navbar bg-white px-10 md:px-16 lg:px-28 py-4 fixed top-0 text-neutral z-50 shadow-sm">
       <div className="navbar-start">
         <div className="flex items-center">
-          <img src="/src/assets/img/logo.png" alt="" className="w-14 mr-2" />
+          <img src="/src/assets/img/logo.png" alt="Logo" className="w-14 mr-2" />
           <Link to="/" className="text-base poppins-extrabold text-start leading-4">
             Dicoding <br /> Forum
           </Link>
