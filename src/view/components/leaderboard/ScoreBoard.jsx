@@ -11,9 +11,9 @@ export default function ScoreBoard() {
           {/* head */}
           <thead>
             <tr className="text-primary">
-              <th className='w-2'>No</th>
+              <th className="w-2">No</th>
               <th>Pengguna</th>
-              <th className='text-end'>Skor</th>
+              <th className="text-end">Skor</th>
             </tr>
           </thead>
           <tbody>
@@ -21,15 +21,15 @@ export default function ScoreBoard() {
             <tr>
               <th>1</th>
               <td>
-                <div className='flex items-center gap-5'>
+                <div className="flex items-center gap-5">
                   <div className="avatar placeholder">
                     <div className="bg-neutral text-neutral-content rounded-full w-12">
                       <span>SY</span>
                     </div>
                   </div>
                   <div>
-                  <h3 className="text-neutral poppins-bold">Doe Hoan</h3>
-                  <p className="text-accent">dohoan@gmail.com</p>
+                    <h3 className="text-neutral poppins-bold">Doe Hoan</h3>
+                    <p className="text-accent">dohoan@gmail.com</p>
                   </div>
                 </div>
               </td>

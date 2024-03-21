@@ -10,7 +10,7 @@ export default function Leaderboard() {
       <div className="pt-32 pb-20 container mx-auto px-10 md:px-16 lg:px-28">
         <div className="card bg-white shadow-xl px-10 py-6">
           <div className="card-body">
-            <div className='flex gap-10 flex-col md:flex-row'>
+            <div className="flex gap-10 flex-col md:flex-row">
               <Stats />
               <Stats />
             </div>

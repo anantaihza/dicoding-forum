@@ -4,6 +4,8 @@ import Home from './view/pages/Home';
 import './assets/css/App.css';
 import Detail from './view/pages/Detail';
 import Leaderboard from './view/pages/Leaderboard';
+import Login from './view/pages/Login';
+import Register from './view/pages/Register';
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/detail" element={<Detail />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
   );
