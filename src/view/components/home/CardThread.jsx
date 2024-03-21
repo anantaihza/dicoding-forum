@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import DownVote from './icon/DownVote';
-import UpVote from './icon/UpVote';
-import Discussion from './icon/Discussion';
+import UpVote from '../common/icon/UpVote';
+import DownVote from '../common/icon/DownVote';
+import Discussion from '../common/icon/Discussion';
 
 export default function CardThread() {
   return (

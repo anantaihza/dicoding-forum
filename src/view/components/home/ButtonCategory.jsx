@@ -7,7 +7,7 @@ export default function ButtonCategory({ name }) {
       type="button"
       className="btn rounded-full px-4 bg-transparent text-primary border-primary hover:bg-primary hover:text-white"
     >
-      <span className='truncate max-w-36'>{name}</span>
+      <span className="truncate max-w-36">{name}</span>
     </button>
   );
 }

@@ -12,7 +12,6 @@ export default function CategoryPopular() {
           <ButtonCategory name="Redux react" />
           <ButtonCategory name="Wadux" />
           <ButtonCategory name="Penjahat" />
-          
         </div>
       </div>
     </div>

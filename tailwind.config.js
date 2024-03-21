@@ -8,7 +8,7 @@ export default {
     extend: {
       boxShadow: {
         'xl-primary': '10px 1px 98px -22px rgba(74,160,235,0.77)',
-      }
+      },
     },
   },
   plugins: [daisyui],

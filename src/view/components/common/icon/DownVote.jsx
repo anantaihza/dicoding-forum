@@ -3,7 +3,11 @@ import React from 'react';
 export default function DownVote() {
   return (
     <div className="flex items-center gap-2">
-      <button type="button" aria-label="downvote" className="hover:text-primary">
+      <button
+        type="button"
+        aria-label="downvote"
+        className="hover:text-primary"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

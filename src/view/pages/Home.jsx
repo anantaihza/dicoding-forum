@@ -16,16 +16,18 @@ export default function Home() {
             <TitleHome />
             <ButtonCreate />
           </div>
-          <label className="form-control w-full max-w-xs block xl:hidden" htmlFor="category">
+          <label
+            className="form-control w-full max-w-xs block xl:hidden"
+            htmlFor="category"
+          >
             <div className="label">
-              <span className="label-text">
-                Filter Kategori
-              </span>
+              <span className="label-text">Filter Kategori</span>
             </div>
-            <select id="category" className="select select-sm w-full max-w-xs bg-white">
-              <option selected>
-                All
-              </option>
+            <select
+              id="category"
+              className="select select-sm w-full max-w-xs bg-white"
+            >
+              <option selected>All</option>
               <option>Redux</option>
               <option>Small Orange</option>
               <option>Small Tomato</option>
