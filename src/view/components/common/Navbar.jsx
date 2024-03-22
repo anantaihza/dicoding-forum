@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Navbar() {
+  const isLogin = false;
+
   return (
     <div className="navbar bg-white px-10 md:px-16 lg:px-28 py-4 fixed top-0 text-neutral z-50 shadow-sm ">
       <div className="container mx-auto">
@@ -67,22 +69,31 @@ export default function Navbar() {
               </li>
             </ul>
           </div>
-          <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar online placeholder"
-            >
-              <div className="bg-neutral text-neutral-content rounded-full w-10">
-                <span className="text-xl">AI</span>
+          {isLogin ? (
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar online placeholder"
+              >
+                <div className="bg-neutral text-neutral-content rounded-full w-10">
+                  <span className="text-xl">AI</span>
+                </div>
               </div>
+              <ul className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-white rounded-box w-52">
+                <li>
+                  <button type="button">Logout</button>
+                </li>
+              </ul>
             </div>
-            <ul className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-white rounded-box w-52">
-              <li>
-                <button type="button">Logout</button>
-              </li>
-            </ul>
-          </div>
+          ) : (
+            <Link
+              to="/login"
+              className="btn btn-primary text-white rounded-full"
+            >
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </div>

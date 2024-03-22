@@ -1,6 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function ButtonCreate() {
+  const [title, setTitle] = useState('');
+  const [category, setCategory] = useState('');
+  const [body, setBody] = useState('');
+
+  const onTitleChange = (event) => {
+    setTitle(event.target.value);
+  };
+
+  const onCategoryChange = (event) => {
+    setCategory(event.target.value);
+  };
+
+  const onBodyChange = (event) => {
+    setBody(event.target.value);
+  };
+
   return (
     <>
       <button
@@ -40,15 +56,21 @@ export default function ButtonCreate() {
               type="text"
               placeholder="Judul Diskusi"
               className="input input-bordered input-primary w-full mb-4"
+              value={title}
+              onChange={onTitleChange}
             />
             <input
               type="text"
               placeholder="Kategori"
               className="input input-bordered input-primary w-full mb-4"
+              value={category}
+              onChange={onCategoryChange}
             />
             <textarea
               className="textarea textarea-primary w-full mb-4"
               placeholder="Ingin diskusi apa?"
+              value={body}
+              onChange={onBodyChange}
             />
             <button
               type="submit"

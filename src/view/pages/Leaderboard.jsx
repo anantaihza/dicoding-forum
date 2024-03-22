@@ -11,8 +11,8 @@ export default function Leaderboard() {
         <div className="card bg-white shadow-xl px-10 py-6">
           <div className="card-body">
             <div className="flex gap-10 flex-col md:flex-row">
-              <Stats />
-              <Stats />
+              <Stats title="Skor Tertinggi" value="100" />
+              <Stats title="Jumlah Pengguna" value="20" />
             </div>
             <ScoreBoard />
           </div>

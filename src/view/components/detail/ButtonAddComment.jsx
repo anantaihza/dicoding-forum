@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function ButtonAddComment() {
+  const [content, setContent] = useState('');
+
+  const onContentChange = (event) => {
+    setContent(event.target.value);
+  };
   return (
     <>
       <button
@@ -39,6 +44,8 @@ export default function ButtonAddComment() {
             <textarea
               className="textarea textarea-primary w-full mb-4"
               placeholder="Ingin berkomentar apa?"
+              value={content}
+              onChange={onContentChange}
             />
             <button
               type="submit"
