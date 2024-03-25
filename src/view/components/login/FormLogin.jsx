@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  loginUser,
-  setIsError,
-  setMessage,
-} from '../../../redux/features/auth/authSlice';
+import { setIsError, setMessage } from '../../../redux/features/auth/authSlice';
+import { loginUser } from '../../../redux/features/auth/authThunk';
 
 export default function FormLogin() {
   const Navigate = useNavigate();

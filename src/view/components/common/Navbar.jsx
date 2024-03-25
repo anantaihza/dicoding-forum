@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProfileUser } from '../../../redux/features/auth/authThunk';
 import { getAccessToken, removeAccessToken } from '../../../utils/api/userAPI';
 
 export default function Navbar() {
-  // TODO: implement avatar
+  const dispatch = useDispatch();
+  const userProfile = useSelector((state) => state.auth.data);
+
+  useEffect(() => {
+    if (getAccessToken() !== null) {
+      dispatch(getProfileUser());
+    }
+  }, [dispatch]);
 
   const onLogout = () => {
     removeAccessToken();
@@ -88,10 +97,15 @@ export default function Navbar() {
                 role="button"
                 className="btn btn-ghost btn-circle avatar online placeholder"
               >
-                <div className="bg-neutral text-neutral-content rounded-full w-10">
-                  <span className="text-xl">AI</span>
+                <div className="w-10 rounded-full">
+                  {userProfile ? (
+                    <img src={userProfile.avatar} alt={userProfile.name} />
+                  ) : (
+                    <span className="loading loading-dots loading-xs" />
+                  )}
                 </div>
               </div>
+
               <ul className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-white rounded-box w-52">
                 <li>
                   <button type="button" onClick={onLogout}>

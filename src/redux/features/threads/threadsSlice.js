@@ -1,85 +1,76 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { registerUser, loginUser, getProfileUser } from './authThunk';
-import { putAccessToken } from '../../../utils/api/userAPI';
+import { getThreads, getThreadDetail, addThread } from './threadsThunk';
 
-const authSlice = createSlice({
-  name: 'auth',
+const threadsSlice = createSlice({
+  name: 'threads',
   initialState: {
-    data: null,
-    token: null,
+    datas: null,
     message: null,
     isError: false,
     isLoading: false,
   },
-  reducers: {
-    setMessage: (state, action) => {
-      state.message = action.payload;
-    },
-    setIsError: (state, action) => {
-      state.isError = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(registerUser.pending, (state) => {
+      .addCase(getThreads.pending, (state) => {
         state.isError = false;
         state.isLoading = true;
         state.message = null;
       })
-      .addCase(registerUser.fulfilled, (state, action) => {
+      .addCase(getThreads.fulfilled, (state, action) => {
         state.isError = action.payload.error;
         state.isLoading = false;
         state.message = action.payload.message;
+        if (action.payload.data) {
+          state.datas = action.payload.data;
+        }
       })
-      .addCase(registerUser.rejected, (state, action) => {
+      .addCase(getThreads.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
         state.message = action.error.message;
       });
 
     builder
-      .addCase(loginUser.pending, (state) => {
+      .addCase(getThreadDetail.pending, (state) => {
         state.isError = false;
         state.isLoading = true;
         state.message = null;
       })
-      .addCase(loginUser.fulfilled, (state, action) => {
+      .addCase(getThreadDetail.fulfilled, (state, action) => {
         state.isError = action.payload.error;
         state.isLoading = false;
         state.message = action.payload.message;
         if (action.payload.data) {
-          state.token = action.payload.data.token;
-          putAccessToken(state.token);
+          state.datas = action.payload.data;
         }
       })
-      .addCase(loginUser.rejected, (state, action) => {
+      .addCase(getThreadDetail.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
         state.message = action.error.message;
       });
 
     builder
-      .addCase(getProfileUser.pending, (state) => {
+      .addCase(addThread.pending, (state) => {
         state.isError = false;
         state.isLoading = true;
         state.message = null;
       })
-      .addCase(getProfileUser.fulfilled, (state, action) => {
+      .addCase(addThread.fulfilled, (state, action) => {
         state.isError = action.payload.error;
         state.isLoading = false;
         state.message = action.payload.message;
         if (action.payload.data) {
-          state.data = action.payload.data;
+          state.datas = action.payload.data;
         }
       })
-      .addCase(getProfileUser.rejected, (state, action) => {
+      .addCase(addThread.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
         state.message = action.error.message;
-        state.data = null;
       });
   },
 });
 
-export const { setIsError, setMessage } = authSlice.actions;
-export default authSlice.reducer;
+export default threadsSlice.reducer;

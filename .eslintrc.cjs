@@ -33,5 +33,7 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'global-require': 'off',
     'eslintimport/no-extraneous-dependencies': 'off',
+    'no-param-reassign': 'off',
+    'react/forbid-prop-types': 'off',
   },
 };

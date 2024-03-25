@@ -1,4 +1,6 @@
-const BASE_URL = 'https://forum-api.dicoding.dev/v1';
+import API_URL from './urlAPI';
+
+const BASE_URL = API_URL;
 
 const getAccessToken = () => localStorage.getItem('accessToken');
 
@@ -30,19 +32,18 @@ const register = async ({ name, email, password }) => {
     });
 
     const responseJson = await response.json();
-    if (responseJson.status !== 'success') {
-      // alert(responseJson.message);
+    if (responseJson.status === 'success') {
       return {
-        error: true,
+        error: false,
         status: responseJson.status,
         message: responseJson.message,
+        data: responseJson.data,
       };
     }
     return {
-      error: false,
+      error: true,
       status: responseJson.status,
       message: responseJson.message,
-      data: responseJson.data,
     };
   } catch (error) {
     return { error: true, status: error.status, message: error.message };
@@ -64,20 +65,20 @@ const login = async ({ email, password }) => {
 
     const responseJson = await response.json();
 
-    if (responseJson.status !== 'success') {
+    if (responseJson.status === 'success') {
       return {
-        error: true,
+        error: false,
         status: responseJson.status,
         message: responseJson.message,
-        data: null,
+        data: responseJson.data,
       };
     }
 
     return {
-      error: false,
+      error: true,
       status: responseJson.status,
       message: responseJson.message,
-      data: responseJson.data,
+      data: null,
     };
   } catch (error) {
     return {
@@ -88,29 +89,61 @@ const login = async ({ email, password }) => {
   }
 };
 
-// TODO: get user profile, perbaiki lagi
 const getUserProfile = async () => {
   try {
     const response = await fetchWithToken(`${BASE_URL}/users/me`);
     const responseJson = await response.json();
 
-    if (responseJson.status !== 'success') {
+    if (responseJson.status === 'success') {
       return {
-        error: true,
+        error: false,
         status: responseJson.status,
         message: responseJson.message,
-        data: null,
+        data: responseJson.data.user,
       };
     }
 
     return {
-      error: false,
+      error: true,
       status: responseJson.status,
       message: responseJson.message,
-      data: responseJson.data,
+      data: null,
     };
   } catch (error) {
-    return { error: true, status: error.status, message: error.message };
+    return {
+      error: true,
+      status: error.status,
+      message: error.message,
+      data: null,
+    };
+  }
+};
+
+const getAllUser = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/users`);
+    const responseJson = await response.json();
+    if (responseJson.status === 'success') {
+      return {
+        error: false,
+        status: responseJson.status,
+        message: responseJson.message,
+        data: responseJson.data.users,
+      };
+    }
+    return {
+      error: true,
+      status: responseJson.status,
+      message: responseJson.message,
+      data: null,
+    };
+  } catch (error) {
+    return {
+      error: true,
+      status: error.status,
+      message: error.message,
+      data: null,
+    };
   }
 };
 
@@ -121,4 +154,6 @@ export {
   register,
   login,
   getUserProfile,
+  fetchWithToken,
+  getAllUser,
 };
