@@ -5,6 +5,7 @@ const threadsSlice = createSlice({
   name: 'threads',
   initialState: {
     datas: null,
+    dataDetail: null,
     message: null,
     isError: false,
     isLoading: false,
@@ -36,13 +37,14 @@ const threadsSlice = createSlice({
         state.isError = false;
         state.isLoading = true;
         state.message = null;
+        state.dataDetail = null;
       })
       .addCase(getThreadDetail.fulfilled, (state, action) => {
         state.isError = action.payload.error;
         state.isLoading = false;
         state.message = action.payload.message;
         if (action.payload.data) {
-          state.datas = action.payload.data;
+          state.dataDetail = action.payload.data;
         }
       })
       .addCase(getThreadDetail.rejected, (state, action) => {

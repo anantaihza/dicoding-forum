@@ -35,7 +35,7 @@ const getAllThread = async () => {
 const getDetailThread = async (id) => {
   try {
     const response = await fetch(`${BASE_URL}/threads/${id}`);
-    const responseJson = response.json();
+    const responseJson = await response.json();
 
     if (responseJson.status === 'success') {
       return {

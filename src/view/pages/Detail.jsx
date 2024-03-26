@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getThreadDetail } from '../../redux/features/threads/threadsThunk';
+import { getProfileUser } from '../../redux/features/auth/authThunk';
 import Navbar from '../components/common/Navbar';
 import TitleDetail from '../components/detail/TitleDetail';
 import ContentDetail from '../components/detail/ContentDetail';
@@ -6,8 +10,22 @@ import UpVote from '../components/common/icon/UpVote';
 import DownVote from '../components/common/icon/DownVote';
 import ButtonAddComment from '../components/detail/ButtonAddComment';
 import CommentList from '../components/detail/CommentList';
+import { summaryVote, isMyIdVote } from '../../utils/CountVote';
+import { getAccessToken } from '../../utils/api/userAPI';
 
 export default function Detail() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const myProfile = useSelector((state) => state.auth.data);
+  const { dataDetail } = useSelector((state) => state.threads);
+
+  useEffect(() => {
+    if (getAccessToken() !== null) {
+      dispatch(getProfileUser());
+    }
+    dispatch(getThreadDetail(id));
+  }, [id, dispatch]);
+
   return (
     <div className="bg-base-100">
       <Navbar />
@@ -15,10 +33,25 @@ export default function Detail() {
         <div className="card bg-white shadow-xl px-10 py-6">
           <div className="card-body">
             <TitleDetail />
-            <ContentDetail />
+            <ContentDetail body={dataDetail?.body} />
             <div className="flex gap-5 mt-5">
-              <UpVote />
-              <DownVote />
+              {getAccessToken() === null ? (
+                <>
+                  <UpVote count={summaryVote(dataDetail?.upVotesBy)} />
+                  <DownVote count={summaryVote(dataDetail?.downVotesBy)} />
+                </>
+              ) : (
+                <>
+                  <UpVote
+                    count={summaryVote(dataDetail?.upVotesBy)}
+                    isVoted={isMyIdVote(myProfile?.id, dataDetail?.upVotesBy)}
+                  />
+                  <DownVote
+                    count={summaryVote(dataDetail?.downVotesBy)}
+                    isVoted={isMyIdVote(myProfile?.id, dataDetail?.downVotesBy)}
+                  />
+                </>
+              )}
             </div>
             <ButtonAddComment />
             <CommentList />

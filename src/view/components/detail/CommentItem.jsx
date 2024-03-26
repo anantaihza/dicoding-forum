@@ -1,32 +1,51 @@
 import React from 'react';
+import PropType from 'prop-types';
+import parser from 'html-react-parser';
+import { useSelector } from 'react-redux';
 import UpVote from '../common/icon/UpVote';
 import DownVote from '../common/icon/DownVote';
+import getTimeAgo from '../../../utils/TimeAgo';
+import { summaryVote, isMyIdVote } from '../../../utils/CountVote';
+import { getAccessToken } from '../../../utils/api/userAPI';
 
-export default function CommentItem() {
+export default function CommentItem({ comment }) {
+  const myProfile = useSelector((state) => state.auth.data);
   return (
     <>
       <div className="flex gap-6 flex-col md:flex-row">
         <div className="avatar placeholder">
-          <div className="bg-neutral text-neutral-content rounded-full w-12 h-12">
-            <span>SY</span>
+          <div className="w-12 h-12 rounded-full">
+            <img src={comment?.owner?.avatar} alt={comment?.owner?.name} />
           </div>
         </div>
-        <div>
+        <div className="w-full">
           <div className="flex justify-between flex-col md:flex-row">
-            <h4 className="grow poppins-bold text-neutral">Syahroni</h4>
+            <h4 className="grow poppins-bold text-neutral">
+              {comment?.owner?.name}
+            </h4>
             <p className="text-start md:text-end text-accent">
-              10 hari yang lalu
+              {getTimeAgo(comment?.createdAt)}
             </p>
           </div>
-          <p className="text-neutral mt-2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident,
-            assumenda, nihil numquam tempora saepe dolorem officiis cum quidem
-            nulla ipsa aliquam, illum natus. Eos neque quidem qui nisi.
-            Incidunt, consectetur.
-          </p>
+          <p className="text-neutral mt-2">{parser(comment?.content)}</p>
           <div className="flex gap-5 mt-5">
-            <UpVote />
-            <DownVote />
+            {getAccessToken() === null ? (
+              <>
+                <UpVote count={summaryVote(comment?.upVotesBy)} />
+                <DownVote count={summaryVote(comment?.downVotesBy)} />
+              </>
+            ) : (
+              <>
+                <UpVote
+                  count={summaryVote(comment?.upVotesBy)}
+                  isVoted={isMyIdVote(myProfile?.id, comment?.upVotesBy)}
+                />
+                <DownVote
+                  count={summaryVote(comment?.downVotesBy)}
+                  isVoted={isMyIdVote(myProfile?.id, comment?.downVotesBy)}
+                />
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -34,3 +53,7 @@ export default function CommentItem() {
     </>
   );
 }
+
+CommentItem.propTypes = {
+  comment: PropType.object.isRequired,
+};
