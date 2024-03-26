@@ -26,11 +26,12 @@ export default function Home() {
             <select
               id="category"
               className="select select-sm w-full max-w-xs bg-white"
+              defaultValue="All"
             >
-              <option selected>All</option>
-              <option>Redux</option>
-              <option>Small Orange</option>
-              <option>Small Tomato</option>
+              <option value="All">All</option>
+              <option value="Redux">Redux</option>
+              <option value="Apa">Small Orange</option>
+              <option value="Gatau">Small Tomato</option>
             </select>
           </label>
 

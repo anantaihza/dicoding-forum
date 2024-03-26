@@ -2,10 +2,10 @@ import React from 'react';
 import PropType from 'prop-types';
 
 export default function GroupAvatar({ listBoard, totalUser }) {
-  return listBoard ? (
+  return (
     <div className="avatar-group -space-x-6 rtl:space-x-reverse justify-center my-2">
       {listBoard?.map((avatar) => (
-        <div className="avatar">
+        <div className="avatar" key={avatar?.user?.id}>
           <div className="w-11">
             <img src={avatar?.user?.avatar} alt={avatar?.user?.name} />
           </div>
@@ -17,14 +17,14 @@ export default function GroupAvatar({ listBoard, totalUser }) {
         </div>
       </div>
     </div>
-  ) : (
-    <div className="flex justify-center">
-      <span className="loading loading-dots loading-lg bg-neutral" />
-    </div>
   );
 }
 
 GroupAvatar.propTypes = {
-  listBoard: PropType.array.isRequired,
+  listBoard: PropType.array,
   totalUser: PropType.number.isRequired,
+};
+
+GroupAvatar.defaultProps = {
+  listBoard: [],
 };

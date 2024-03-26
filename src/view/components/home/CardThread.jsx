@@ -4,7 +4,7 @@ import PropType from 'prop-types';
 import parser from 'html-react-parser';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfileUser } from '../../../redux/features/auth/authThunk';
-import getUsers from '../../../redux/features/users/usersThunk';
+// import getUsers from '../../../redux/features/users/usersThunk';
 import UpVote from '../common/icon/UpVote';
 import DownVote from '../common/icon/DownVote';
 import Discussion from '../common/icon/Discussion';
@@ -19,14 +19,13 @@ export default function CardThread({ thread }) {
   const { users } = useSelector((state) => state.users);
 
   useEffect(() => {
-    dispatch(getUsers());
+    // dispatch(getUsers());
     if (getAccessToken() !== null) {
       dispatch(getProfileUser());
     }
   }, [dispatch]);
 
   const profile = getProfileUserThread(users, thread.ownerId);
-  // console.log(thread)
 
   return (
     <div className="card p-2 w-full bg-white my-8 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-105 duration-300 hover:shadow-xl-primary">

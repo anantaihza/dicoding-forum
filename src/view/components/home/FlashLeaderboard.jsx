@@ -13,16 +13,27 @@ export default function FlashLeaderboard() {
     dispatch(getAllLeaderboard());
   }, [dispatch]);
 
-  dispatch(countTotalUsers());
+  useEffect(() => {
+    if (listBoard) {
+      dispatch(countTotalUsers());
+    }
+  }, [listBoard, dispatch]);
 
   const topThree = listBoard?.slice(0, 3);
-  // const topFive = listBoard?.slice(0, 5);
 
   return (
     <div className="card w-96 bg-white">
       <div className="card-body">
         <h2 className="card-title">Leaderboard</h2>
-        <GroupAvatar listBoard={topThree} totalUser={totalUsers} />
+
+        {topThree ? (
+          <GroupAvatar listBoard={topThree} totalUser={totalUsers} />
+        ) : (
+          <div className="flex justify-center">
+            <span className="loading loading-dots loading-lg bg-neutral" />
+          </div>
+        )}
+
         <div className="text-center">
           <Link
             to="/leaderboard"
@@ -45,9 +56,9 @@ export default function FlashLeaderboard() {
             </svg>
           </Link>
         </div>
+
         <div className="overflow-x-auto mt-2">
           <table className="table">
-            {/* head */}
             <thead>
               <tr>
                 <th>No</th>

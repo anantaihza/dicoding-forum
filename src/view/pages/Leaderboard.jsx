@@ -23,11 +23,11 @@ export default function Leaderboard() {
 
   useEffect(() => {
     dispatch(getAllLeaderboard());
+    dispatch(countHighScore());
+    dispatch(countTotalScore());
+    dispatch(countTotalUsers());
   }, [dispatch]);
 
-  dispatch(countHighScore());
-  dispatch(countTotalScore());
-  dispatch(countTotalUsers());
 
   return (
     <div className="bg-base-100">
