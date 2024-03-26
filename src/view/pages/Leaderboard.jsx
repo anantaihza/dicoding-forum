@@ -1,9 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import getAllLeaderboard from '../../redux/features/leaderboard/leaderboardThunk';
+import {
+  countHighScore,
+  countTotalScore,
+  countTotalUsers,
+} from '../../redux/features/leaderboard/leaderboardSlice';
 import Navbar from '../components/common/Navbar';
 import Stats from '../components/leaderboard/Stats';
 import ScoreBoard from '../components/leaderboard/ScoreBoard';
 
 export default function Leaderboard() {
+  const dispatch = useDispatch();
+  const {
+    highScore,
+    totalScore,
+    totalUsers,
+    isHighScoreLoading,
+    isTotalScoreLoading,
+    isTotalUsersLoading,
+  } = useSelector((state) => state.leaderboard);
+
+  useEffect(() => {
+    dispatch(getAllLeaderboard());
+  }, [dispatch]);
+
+  dispatch(countHighScore());
+  dispatch(countTotalScore());
+  dispatch(countTotalUsers());
+
   return (
     <div className="bg-base-100">
       <Navbar />
@@ -11,8 +36,21 @@ export default function Leaderboard() {
         <div className="card bg-white shadow-xl px-10 py-6">
           <div className="card-body">
             <div className="flex gap-10 flex-col md:flex-row">
-              <Stats title="Skor Tertinggi" value="100" />
-              <Stats title="Jumlah Pengguna" value="20" />
+              <Stats
+                title="Total Score"
+                value={totalScore}
+                isLoading={isTotalScoreLoading}
+              />
+              <Stats
+                title="Score Tertinggi"
+                value={highScore}
+                isLoading={isHighScoreLoading}
+              />
+              <Stats
+                title="Total User"
+                value={totalUsers}
+                isLoading={isTotalUsersLoading}
+              />
             </div>
             <ScoreBoard />
           </div>

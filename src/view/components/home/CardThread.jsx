@@ -8,9 +8,9 @@ import getUsers from '../../../redux/features/users/usersThunk';
 import UpVote from '../common/icon/UpVote';
 import DownVote from '../common/icon/DownVote';
 import Discussion from '../common/icon/Discussion';
-import getTimeAgo from '../../../utils/TimeAgo';
-import getProfileUserThread from '../../../utils/ProfileUser';
-import { summaryVote, isMyIdVote } from '../../../utils/CountVote';
+import getTimeAgo from '../../../utils/timeAgo';
+import getProfileUserThread from '../../../utils/profileUser';
+import { summaryVote, isMyIdVote } from '../../../utils/countVote';
 import { getAccessToken } from '../../../utils/api/userAPI';
 
 export default function CardThread({ thread }) {

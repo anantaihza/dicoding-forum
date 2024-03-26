@@ -1,11 +1,11 @@
 import { React } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './view/pages/Home';
-import './assets/css/App.css';
-import Detail from './view/pages/Detail';
-import Leaderboard from './view/pages/Leaderboard';
 import Login from './view/pages/Login';
+import Detail from './view/pages/Detail';
 import Register from './view/pages/Register';
+import Leaderboard from './view/pages/Leaderboard';
+import './assets/css/App.css';
 
 function App() {
   return (

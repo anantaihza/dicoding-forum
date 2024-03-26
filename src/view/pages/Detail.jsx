@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getThreadDetail } from '../../redux/features/threads/threadsThunk';
 import { getProfileUser } from '../../redux/features/auth/authThunk';
+import { getThreadDetail } from '../../redux/features/threads/threadsThunk';
 import Navbar from '../components/common/Navbar';
-import TitleDetail from '../components/detail/TitleDetail';
-import ContentDetail from '../components/detail/ContentDetail';
 import UpVote from '../components/common/icon/UpVote';
 import DownVote from '../components/common/icon/DownVote';
-import ButtonAddComment from '../components/detail/ButtonAddComment';
+import TitleDetail from '../components/detail/TitleDetail';
 import CommentList from '../components/detail/CommentList';
-import { summaryVote, isMyIdVote } from '../../utils/CountVote';
+import ContentDetail from '../components/detail/ContentDetail';
+import ButtonAddComment from '../components/detail/ButtonAddComment';
 import { getAccessToken } from '../../utils/api/userAPI';
+import { summaryVote, isMyIdVote } from '../../utils/countVote';
 
 export default function Detail() {
   const { id } = useParams();

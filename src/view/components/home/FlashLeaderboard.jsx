@@ -1,43 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { countTotalUsers } from '../../../redux/features/leaderboard/leaderboardSlice';
+import getAllLeaderboard from '../../../redux/features/leaderboard/leaderboardThunk';
+import GroupAvatar from './GroupAvatar';
 
 export default function FlashLeaderboard() {
+  const dispatch = useDispatch();
+  const { listBoard, totalUsers } = useSelector((state) => state.leaderboard);
+
+  useEffect(() => {
+    dispatch(getAllLeaderboard());
+  }, [dispatch]);
+
+  dispatch(countTotalUsers());
+
+  const topThree = listBoard?.slice(0, 3);
+  // const topFive = listBoard?.slice(0, 5);
+
   return (
     <div className="card w-96 bg-white">
       <div className="card-body">
         <h2 className="card-title">Leaderboard</h2>
-        <div className="overflow-x-auto">
-          <table className="table">
-            {/* head */}
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* row 1 */}
-              <tr>
-                <th>1</th>
-                <td>Doe Hoan</td>
-                <td>23</td>
-              </tr>
-              {/* row 2 */}
-              <tr>
-                <th>2</th>
-                <td>Hart Hagerty</td>
-                <td>20</td>
-              </tr>
-              {/* row 3 */}
-              <tr>
-                <th>3</th>
-                <td>Brice Swyre</td>
-                <td>10</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <GroupAvatar listBoard={topThree} totalUser={totalUsers} />
         <div className="text-center">
           <Link
             to="/leaderboard"
@@ -59,6 +44,27 @@ export default function FlashLeaderboard() {
               />
             </svg>
           </Link>
+        </div>
+        <div className="overflow-x-auto mt-2">
+          <table className="table">
+            {/* head */}
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              {topThree?.map((board, index) => (
+                <tr key={board?.user?.id}>
+                  <th>{index + 1}</th>
+                  <td>{board?.user?.name}</td>
+                  <td>{board?.score}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
