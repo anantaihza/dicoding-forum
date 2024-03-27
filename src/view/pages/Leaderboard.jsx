@@ -28,7 +28,6 @@ export default function Leaderboard() {
     dispatch(countTotalUsers());
   }, [dispatch]);
 
-
   return (
     <div className="bg-base-100">
       <Navbar />

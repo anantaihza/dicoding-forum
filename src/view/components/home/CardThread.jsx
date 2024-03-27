@@ -28,7 +28,7 @@ export default function CardThread({ thread }) {
   const profile = getProfileUserThread(users, thread.ownerId);
 
   return (
-    <div className="card p-2 w-full bg-white my-8 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-105 duration-300 hover:shadow-xl-primary">
+    <div className="card p-2 w-full grow bg-white my-8 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-105 duration-300 hover:shadow-xl-primary">
       <div className="card-body flex flex-col md:flex-row gap-10">
         <div className="avatar">
           <div className="w-16 h-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
