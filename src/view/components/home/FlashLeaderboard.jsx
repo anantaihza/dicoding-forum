@@ -27,7 +27,7 @@ export default function FlashLeaderboard() {
         <h2 className="card-title">Leaderboard</h2>
 
         {topThree ? (
-          <GroupAvatar listBoard={topThree} totalUser={totalUsers} />
+          <GroupAvatar listBoard={topThree} totalUser={totalUsers.value} />
         ) : (
           <div className="flex justify-center">
             <span className="loading loading-dots loading-lg bg-neutral" />

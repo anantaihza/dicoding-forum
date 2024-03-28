@@ -2,8 +2,8 @@ import React from 'react';
 import PropType from 'prop-types';
 import parser from 'html-react-parser';
 import { useSelector } from 'react-redux';
-import UpVote from '../common/icon/UpVote';
-import DownVote from '../common/icon/DownVote';
+import UpVoteComment from '../common/icon/UpVoteComment';
+import DownVoteComment from '../common/icon/DownVoteComment';
 import getTimeAgo from '../../../utils/timeAgo';
 import { summaryVote, isMyIdVote } from '../../../utils/countVote';
 import { getAccessToken } from '../../../utils/api/userAPI';
@@ -31,16 +31,16 @@ export default function CommentItem({ comment }) {
           <div className="flex gap-5 mt-5">
             {getAccessToken() === null ? (
               <>
-                <UpVote count={summaryVote(comment?.upVotesBy)} />
-                <DownVote count={summaryVote(comment?.downVotesBy)} />
+                <UpVoteComment count={summaryVote(comment?.upVotesBy)} />
+                <DownVoteComment count={summaryVote(comment?.downVotesBy)} />
               </>
             ) : (
               <>
-                <UpVote
+                <UpVoteComment
                   count={summaryVote(comment?.upVotesBy)}
                   isVoted={isMyIdVote(myProfile?.id, comment?.upVotesBy)}
                 />
-                <DownVote
+                <DownVoteComment
                   count={summaryVote(comment?.downVotesBy)}
                   isVoted={isMyIdVote(myProfile?.id, comment?.downVotesBy)}
                 />

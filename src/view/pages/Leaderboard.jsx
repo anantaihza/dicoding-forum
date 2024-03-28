@@ -12,21 +12,21 @@ import ScoreBoard from '../components/leaderboard/ScoreBoard';
 
 export default function Leaderboard() {
   const dispatch = useDispatch();
-  const {
-    highScore,
-    totalScore,
-    totalUsers,
-    isHighScoreLoading,
-    isTotalScoreLoading,
-    isTotalUsersLoading,
-  } = useSelector((state) => state.leaderboard);
+  const { listBoard, highScore, totalScore, totalUsers } = useSelector(
+    (state) => state.leaderboard
+  );
 
   useEffect(() => {
     dispatch(getAllLeaderboard());
-    dispatch(countHighScore());
-    dispatch(countTotalScore());
-    dispatch(countTotalUsers());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (listBoard) {
+      dispatch(countHighScore());
+      dispatch(countTotalScore());
+      dispatch(countTotalUsers());
+    }
+  }, [listBoard, dispatch]);
 
   return (
     <div className="bg-base-100">
@@ -37,18 +37,18 @@ export default function Leaderboard() {
             <div className="flex gap-10 flex-col md:flex-row">
               <Stats
                 title="Total Score"
-                value={totalScore}
-                isLoading={isTotalScoreLoading}
+                value={totalScore.value}
+                isLoading={totalScore.isTotalScoreLoading}
               />
               <Stats
                 title="Score Tertinggi"
-                value={highScore}
-                isLoading={isHighScoreLoading}
+                value={highScore.value}
+                isLoading={highScore.isHighScoreLoading}
               />
               <Stats
                 title="Total User"
-                value={totalUsers}
-                isLoading={isTotalUsersLoading}
+                value={totalUsers.value}
+                isLoading={totalUsers.isTotalUsersLoading}
               />
             </div>
             <ScoreBoard />

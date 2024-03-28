@@ -3,6 +3,8 @@ import authReducer from '../features/auth/authSlice';
 import usersReducer from '../features/users/usersSlice';
 import threadReducer from '../features/threads/threadsSlice';
 import categoriesReducer from '../features/categories/categoriesSlice';
+import voteThreadReducer from '../features/voteThread/voteThreadSlice';
+import voteCommentReducer from '../features/voteComment/voteCommentSlice';
 import leaderboardReducer from '../features/leaderboard/leaderboardSlice';
 
 const store = configureStore({
@@ -11,6 +13,8 @@ const store = configureStore({
     users: usersReducer,
     threads: threadReducer,
     categories: categoriesReducer,
+    voteThread: voteThreadReducer,
+    voteComment: voteCommentReducer,
     leaderboard: leaderboardReducer,
   },
 });

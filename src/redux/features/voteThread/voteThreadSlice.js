@@ -1,73 +1,68 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getThreads, getThreadDetail, addThread } from './threadsThunk';
+import { upVote, downVote, neutralizeVote } from './voteThreadThunk';
 
-const threadsSlice = createSlice({
-  name: 'threads',
+const voteThreadSlice = createSlice({
+  name: 'voteThread',
   initialState: {
-    datas: null,
-    dataDetail: null,
+    vote: null,
     message: null,
     isError: false,
-    isLoading: true,
+    isLoading: false,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getThreads.pending, (state) => {
+      .addCase(upVote.pending, (state) => {
         state.isError = false;
         state.isLoading = true;
-        state.message = null;
       })
-      .addCase(getThreads.fulfilled, (state, action) => {
+      .addCase(upVote.fulfilled, (state, action) => {
         state.isError = action.payload.error;
         state.isLoading = false;
         state.message = action.payload.message;
         if (action.payload.data) {
-          state.datas = action.payload.data;
+          state.vote = action.payload.data;
+          state.isVote = true;
         }
       })
-      .addCase(getThreads.rejected, (state, action) => {
+      .addCase(upVote.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
         state.message = action.error.message;
       });
-
     builder
-      .addCase(getThreadDetail.pending, (state) => {
+      .addCase(downVote.pending, (state) => {
         state.isError = false;
         state.isLoading = true;
-        state.message = null;
-        state.dataDetail = null;
       })
-      .addCase(getThreadDetail.fulfilled, (state, action) => {
+      .addCase(downVote.fulfilled, (state, action) => {
         state.isError = action.payload.error;
         state.isLoading = false;
         state.message = action.payload.message;
         if (action.payload.data) {
-          state.dataDetail = action.payload.data;
+          state.vote = action.payload.data;
         }
       })
-      .addCase(getThreadDetail.rejected, (state, action) => {
+      .addCase(downVote.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
         state.message = action.error.message;
       });
-
     builder
-      .addCase(addThread.pending, (state) => {
+      .addCase(neutralizeVote.pending, (state) => {
         state.isError = false;
         state.isLoading = true;
-        state.message = null;
       })
-      .addCase(addThread.fulfilled, (state, action) => {
+      .addCase(neutralizeVote.fulfilled, (state, action) => {
         state.isError = action.payload.error;
         state.isLoading = false;
         state.message = action.payload.message;
         if (action.payload.data) {
-          state.datas = action.payload.data;
+          state.vote = action.payload.data;
+          state.isVote = false;
         }
       })
-      .addCase(addThread.rejected, (state, action) => {
+      .addCase(neutralizeVote.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
         state.message = action.error.message;
@@ -75,4 +70,6 @@ const threadsSlice = createSlice({
   },
 });
 
-export default threadsSlice.reducer;
+export const { updateVotedThread } = voteThreadSlice.actions;
+
+export default voteThreadSlice.reducer;

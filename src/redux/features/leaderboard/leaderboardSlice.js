@@ -8,42 +8,54 @@ const leaderboardSlice = createSlice({
     message: null,
     isError: false,
     isLoading: false,
-    highScore: 0,
-    totalScore: 0,
-    totalUsers: 0,
-    isHighScoreLoading: false,
-    isTotalScoreLoading: false,
-    isTotalUsersLoading: false,
+    // highScore: 0,
+    // isHighScoreLoading: false,
+    highScore: {
+      value: 0,
+      isHighScoreLoading: true,
+    },
+    // totalScore: 0,
+    // isTotalScoreLoading: false,
+    totalScore: {
+      value: 0,
+      isTotalScoreLoading: true,
+    },
+    // totalUsers: 0,
+    // isTotalUsersLoading: false,
+    totalUsers: {
+      value: 0,
+      isTotalUsersLoading: true,
+    },
   },
   reducers: {
     countHighScore: (state) => {
       if (state.listBoard) {
-        state.highScore = state.listBoard[0].score;
-        state.isHighScoreLoading = false;
+        state.highScore.value = state.listBoard[0].score;
+        state.highScore.isHighScoreLoading = false;
       } else {
-        state.highScore = 0;
-        state.isHighScoreLoading = true;
+        state.highScore.value = 0;
+        state.highScore.isHighScoreLoading = true;
       }
     },
     countTotalScore: (state) => {
       if (state.listBoard) {
-        state.totalScore = state.listBoard.reduce(
+        state.totalScore.value = state.listBoard.reduce(
           (total, current) => total + current.score,
           0
         );
-        state.isTotalScoreLoading = false;
+        state.totalScore.isTotalScoreLoading = false;
       } else {
-        state.totalScore = 0;
-        state.isTotalScoreLoading = true;
+        state.totalScore.value = 0;
+        state.totalScore.isTotalScoreLoading = true;
       }
     },
     countTotalUsers: (state) => {
       if (state.listBoard) {
-        state.totalUsers = state.listBoard.length;
-        state.isTotalUsersLoading = false;
+        state.totalUsers.value = state.listBoard.length;
+        state.totalUsers.isTotalUsersLoading = false;
       } else {
-        state.totalUsers = 0;
-        state.isTotalUsersLoading = true;
+        state.totalUsers.value = 0;
+        state.totalUsers.isTotalUsersLoading = true;
       }
     },
   },
