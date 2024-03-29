@@ -1,8 +1,8 @@
 import React from 'react';
 import PropType from 'prop-types';
+import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
 import { getThreads } from '../../../../redux/features/threads/threadsThunk';
 import {
   neutralizeVote,
@@ -32,6 +32,7 @@ export default function UpVoteThread({
       } catch (error) {
         setUp(true);
         setCountUp((prevCount) => prevCount + 1);
+        toast.error(error.message);
       }
     }
   };
@@ -52,10 +53,11 @@ export default function UpVoteThread({
       } catch (error) {
         setUp(false);
         setCountUp((prevCount) => prevCount - 1);
-        if (!isDownActive) {
+        if (isDownActive === true && isUpActive === false) {
           setDown(true);
           setCountDown((prevCount) => prevCount + 1);
         }
+        toast.error(error.message);
       }
     }
   };

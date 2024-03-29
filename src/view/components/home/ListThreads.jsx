@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import filterThreadByCategory from '../../../utils/filterThreads';
 import { getThreads } from '../../../redux/features/threads/threadsThunk';
 import CardThread from './CardThread';
+import SkeletonCard from './skeleton/SkeletonCard';
 
 export default function ListThreads() {
   const dispatch = useDispatch();
@@ -18,8 +19,10 @@ export default function ListThreads() {
     : datas;
 
   return filteredThreads === null ? (
-    <div className="flex justify-center items-center w-full h-full">
-      <span className="loading loading-spinner loading-lg" />
+    <div>
+      {[...Array(10)].map(() => (
+        <SkeletonCard key={Math.random()} />
+      ))}
     </div>
   ) : (
     filteredThreads?.map((thread) => (

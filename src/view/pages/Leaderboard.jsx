@@ -9,12 +9,12 @@ import {
 import Navbar from '../components/common/Navbar';
 import Stats from '../components/leaderboard/Stats';
 import ScoreBoard from '../components/leaderboard/ScoreBoard';
+import SkeletonScoreBoard from '../components/leaderboard/skeleton/SkeletonScoreBoard';
 
 export default function Leaderboard() {
   const dispatch = useDispatch();
-  const { listBoard, highScore, totalScore, totalUsers } = useSelector(
-    (state) => state.leaderboard
-  );
+  const { listBoard, highScore, totalScore, totalUsers, isLoading } =
+    useSelector((state) => state.leaderboard);
 
   useEffect(() => {
     dispatch(getAllLeaderboard());
@@ -51,7 +51,7 @@ export default function Leaderboard() {
                 isLoading={totalUsers.isTotalUsersLoading}
               />
             </div>
-            <ScoreBoard />
+            {isLoading ? <SkeletonScoreBoard /> : <ScoreBoard />}
           </div>
         </div>
       </div>

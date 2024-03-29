@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { registerUser, loginUser, getProfileUser } from './authThunk';
 import { putAccessToken } from '../../../utils/api/userAPI';
+import { registerUser, loginUser, getProfileUser } from './authThunk';
 
 const authSlice = createSlice({
   name: 'auth',

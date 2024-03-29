@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react';
+import { toast } from 'react-toastify';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
 import { getAccessToken } from '../../../utils/api/userAPI';
-import { getThreadDetail } from '../../../redux/features/threads/threadsThunk';
 import addComment from '../../../redux/features/comment/commentThunk';
+import { getThreadDetail } from '../../../redux/features/threads/threadsThunk';
 import {
   setIsError,
   setMessage,

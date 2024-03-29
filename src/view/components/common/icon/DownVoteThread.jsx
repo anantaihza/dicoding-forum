@@ -1,8 +1,8 @@
 import React from 'react';
 import PropType from 'prop-types';
+import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
 import { getAccessToken } from '../../../../utils/api/userAPI';
 import {
   downVote,
@@ -32,6 +32,7 @@ export default function DownVoteThread({
       } catch (error) {
         setDown(true);
         setCountDown((prevCount) => prevCount + 1);
+        toast.error(error.message);
       }
     }
   };
@@ -52,10 +53,11 @@ export default function DownVoteThread({
       } catch (error) {
         setDown(false);
         setCountDown((prevCount) => prevCount - 1);
-        if (!isUpActive) {
+        if (isUpActive === true && isDownActive === false) {
           setUp(true);
           setCountUp((prevCount) => prevCount + 1);
         }
+        toast.error(error.message);
       }
     }
   };

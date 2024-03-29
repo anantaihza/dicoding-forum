@@ -2,16 +2,11 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { countTotalUsers } from '../../../redux/features/leaderboard/leaderboardSlice';
-import getAllLeaderboard from '../../../redux/features/leaderboard/leaderboardThunk';
 import GroupAvatar from './GroupAvatar';
 
 export default function FlashLeaderboard() {
   const dispatch = useDispatch();
   const { listBoard, totalUsers } = useSelector((state) => state.leaderboard);
-
-  useEffect(() => {
-    dispatch(getAllLeaderboard());
-  }, [dispatch]);
 
   useEffect(() => {
     if (listBoard) {

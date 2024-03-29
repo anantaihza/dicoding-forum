@@ -29,6 +29,7 @@ const voteCommentSlice = createSlice({
         state.isLoading = false;
         state.message = action.error.message;
       });
+
     builder
       .addCase(downVote.pending, (state) => {
         state.isError = false;
@@ -47,6 +48,7 @@ const voteCommentSlice = createSlice({
         state.isLoading = false;
         state.message = action.error.message;
       });
+
     builder
       .addCase(neutralizeVote.pending, (state) => {
         state.isError = false;
