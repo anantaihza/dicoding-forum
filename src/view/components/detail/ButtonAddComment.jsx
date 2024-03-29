@@ -1,13 +1,36 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { getAccessToken } from '../../../utils/api/userAPI';
+import addComment from '../../../redux/features/comment/commentThunk';
+import {
+  setIsError,
+  setMessage,
+} from '../../../redux/features/comment/commentSlice';
 
 export default function ButtonAddComment() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
   const [content, setContent] = useState('');
 
   const onContentChange = (event) => {
     setContent(event.target.value);
   };
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const result = await dispatch(addComment({ threadId: id, content }));
+      if (result.payload.status === 'success') {
+        setContent('');
+        window.location.reload();
+      }
+    } catch (error) {
+      dispatch(setIsError(true));
+      dispatch(setMessage(error.message));
+    }
+  };
+
   return (
     <>
       {getAccessToken() === null ? (
@@ -66,10 +89,11 @@ export default function ButtonAddComment() {
             </button>
           </form>
           <h3 className="font-bold text-lg">Berikan komentar</h3>
-          <form action="" className="py-8 px-2">
+          <form onSubmit={onSubmit} className="py-8 px-2">
             <textarea
               className="textarea textarea-primary w-full mb-4"
               placeholder="Ingin berkomentar apa?"
+              name="content"
               value={content}
               onChange={onContentChange}
             />

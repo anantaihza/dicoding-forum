@@ -124,19 +124,12 @@ export default function ButtonCreate() {
             <textarea
               className="textarea textarea-primary w-full mb-4"
               placeholder="Ingin diskusi apa?"
+              name="body"
               value={body}
               onChange={onBodyChange}
               required
             />
 
-            {/* <p className="text-neutral text-md poppins-semibold mb-1">
-              Ingin diskusi apa?
-            </p>
-            <div
-              className="textarea textarea-primary h-60 rounded-lg p-4 overflow-y-auto"
-              contentEditable="true"
-              onBlur={onBodyChange}
-            /> */}
             <br />
             <button
               type="submit"
