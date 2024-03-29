@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useParams, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfileUser } from '../../redux/features/auth/authThunk';
 import { getThreadDetail } from '../../redux/features/threads/threadsThunk';
@@ -17,7 +18,7 @@ export default function Detail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const myProfile = useSelector((state) => state.auth.data);
-  const { dataDetail } = useSelector((state) => state.threads);
+  const { dataDetail, message } = useSelector((state) => state.threads);
 
   const [isUpVoteActive, setIsUpVoteActive] = useState(false);
   const [isDownVoteActive, setIsDownVoteActive] = useState(false);
@@ -37,6 +38,11 @@ export default function Detail() {
     setCountUp(summaryVote(dataDetail?.upVotesBy));
     setCountDown(summaryVote(dataDetail?.downVotesBy));
   }, [dataDetail, myProfile]);
+
+  if (message === 'thread tidak ditemukan') {
+    toast.error('Thread tidak ditemukan');
+    return <Navigate to="/" />;
+  }
 
   return (
     dataDetail && (

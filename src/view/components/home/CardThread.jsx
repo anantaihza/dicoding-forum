@@ -56,7 +56,9 @@ export default function CardThread({ thread }) {
                 {getTimeAgo(thread?.createdAt)}
               </p>
             </div>
-            <div className="my-3 text-neutral">{parser(thread?.body)}</div>
+            <div className="my-3 text-neutral h-fit max-h-60 overflow-hidden text-clip">
+              {parser(thread?.body)}
+            </div>
           </Link>
           <div className="mt-6 flex gap-5 flex-wrap">
             {getAccessToken() === null ? (
