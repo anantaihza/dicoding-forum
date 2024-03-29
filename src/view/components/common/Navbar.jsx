@@ -101,7 +101,9 @@ export default function Navbar() {
                   {userProfile ? (
                     <img src={userProfile.avatar} alt={userProfile.name} />
                   ) : (
-                    <span className="loading loading-dots loading-xs" />
+                    <div className="bg-neutral text-neutral-content rounded-full w-10 h-10">
+                      <span className="loading loading-dots loading-xs" />
+                    </div>
                   )}
                 </div>
               </div>

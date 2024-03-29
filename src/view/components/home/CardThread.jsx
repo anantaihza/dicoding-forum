@@ -40,11 +40,19 @@ export default function CardThread({ thread }) {
   return (
     <div className="card p-2 w-full grow bg-white my-8 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-105 duration-300 hover:shadow-xl-primary">
       <div className="card-body flex flex-col md:flex-row gap-10">
-        <div className="avatar">
-          <div className="w-16 h-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-            <img src={profile?.avatar} alt={profile?.name} />
+        {profile ? (
+          <div className="avatar">
+            <div className="w-16 h-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+              <img src={profile?.avatar} alt={profile?.name} />
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="avatar placeholder">
+            <div className="bg-neutral text-neutral-content rounded-full w-16 h-16">
+              <span className="loading loading-dots loading-lg" />
+            </div>
+          </div>
+        )}
         <div className="grow">
           <Link to={`/detail/${thread?.id}`}>
             <div className="flex justify-start gap-x-3 gap-y-0 items-start md:item-center flex-wrap flex-col lg:flex-row">
