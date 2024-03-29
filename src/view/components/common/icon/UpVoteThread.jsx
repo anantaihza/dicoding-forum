@@ -21,13 +21,13 @@ export default function UpVoteThread({
 }) {
   const dispatch = useDispatch();
 
-  const neutralizeVoteHandler = () => {
+  const neutralizeVoteHandler = async () => {
     setUp(false);
     setCountUp((prevCount) => prevCount - 1);
     if (getAccessToken() !== null) {
       try {
-        dispatch(neutralizeVote(idThread));
-        dispatch(getThreads());
+        await dispatch(neutralizeVote(idThread));
+        await dispatch(getThreads());
       } catch (error) {
         setUp(true);
         setCountUp((prevCount) => prevCount + 1);
@@ -35,7 +35,7 @@ export default function UpVoteThread({
     }
   };
 
-  const upVoteHandler = () => {
+  const upVoteHandler = async () => {
     setUp(true);
     setCountUp((prevCount) => prevCount + 1);
     if (isDownActive) {
@@ -44,9 +44,9 @@ export default function UpVoteThread({
     }
     if (getAccessToken() !== null) {
       try {
-        dispatch(neutralizeVote(idThread));
-        dispatch(upVote(idThread));
-        dispatch(getThreads());
+        await dispatch(neutralizeVote(idThread));
+        await dispatch(upVote(idThread));
+        await dispatch(getThreads());
       } catch (error) {
         setUp(false);
         setCountUp((prevCount) => prevCount - 1);

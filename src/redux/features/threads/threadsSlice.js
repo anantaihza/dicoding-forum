@@ -10,7 +10,14 @@ const threadsSlice = createSlice({
     isError: false,
     isLoading: true,
   },
-  reducers: {},
+  reducers: {
+    setIsError: (state, action) => {
+      state.isError = action.payload;
+    },
+    setMessage: (state, action) => {
+      state.message = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getThreads.pending, (state) => {
@@ -74,5 +81,7 @@ const threadsSlice = createSlice({
       });
   },
 });
+
+export const { setIsError, setMessage } = threadsSlice.actions;
 
 export default threadsSlice.reducer;

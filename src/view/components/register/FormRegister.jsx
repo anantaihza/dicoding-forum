@@ -77,6 +77,8 @@ export default function FormRegister() {
         <input
           type="text"
           placeholder="Nama"
+          name="nama"
+          autoComplete="name"
           className="input input-lg bg-white w-full rounded-full mb-5"
           value={name}
           onChange={onNameChange}
@@ -85,6 +87,8 @@ export default function FormRegister() {
         <input
           type="email"
           placeholder="Email"
+          name="email"
+          autoComplete="email"
           className="input input-lg bg-white w-full rounded-full mb-5"
           value={email}
           onChange={onEmailChange}
@@ -114,6 +118,7 @@ export default function FormRegister() {
           <input
             type="password"
             placeholder="Password"
+            name="password"
             className="input input-lg bg-white w-full rounded-full mb-5"
             value={password}
             onChange={onPasswordChange}
@@ -121,6 +126,7 @@ export default function FormRegister() {
           <input
             type="password"
             placeholder="Retype password"
+            name="retypePassword"
             className="input input-lg bg-white w-full rounded-full mb-5"
             value={retypePassword}
             onChange={onRetypePasswordChange}

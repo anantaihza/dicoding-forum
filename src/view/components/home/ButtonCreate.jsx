@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {
+  setIsError,
+  setMessage,
+} from '../../../redux/features/threads/threadsSlice';
+import { addThread } from '../../../redux/features/threads/threadsThunk';
 import { getAccessToken } from '../../../utils/api/userAPI';
 
 export default function ButtonCreate() {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
   const [body, setBody] = useState('');
@@ -17,6 +24,23 @@ export default function ButtonCreate() {
 
   const onBodyChange = (event) => {
     setBody(event.target.value);
+  };
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const result = await dispatch(addThread({ title, body, category }));
+      if (result.payload.status === 'success') {
+        setTitle('');
+        setCategory('');
+        setBody('');
+        window.location.reload();
+      }
+    } catch (error) {
+      dispatch(setIsError(true));
+      dispatch(setMessage(error.message));
+    }
   };
 
   return (
@@ -77,27 +101,43 @@ export default function ButtonCreate() {
             </button>
           </form>
           <h3 className="font-bold text-lg">Buat Diskusi Baru</h3>
-          <form action="" className="py-8 px-2">
+          <form onSubmit={onSubmit} className="py-8 px-2">
             <input
               type="text"
               placeholder="Judul Diskusi"
+              name="title"
               className="input input-bordered input-primary w-full mb-4"
               value={title}
               onChange={onTitleChange}
+              required
             />
             <input
               type="text"
               placeholder="Kategori"
+              name="category"
               className="input input-bordered input-primary w-full mb-4"
               value={category}
               onChange={onCategoryChange}
+              required
             />
+
             <textarea
               className="textarea textarea-primary w-full mb-4"
               placeholder="Ingin diskusi apa?"
               value={body}
               onChange={onBodyChange}
+              required
             />
+
+            {/* <p className="text-neutral text-md poppins-semibold mb-1">
+              Ingin diskusi apa?
+            </p>
+            <div
+              className="textarea textarea-primary h-60 rounded-lg p-4 overflow-y-auto"
+              contentEditable="true"
+              onBlur={onBodyChange}
+            /> */}
+            <br />
             <button
               type="submit"
               className="btn btn-block btn-primary text-white"

@@ -79,6 +79,8 @@ export default function FormLogin() {
         <input
           type="email"
           placeholder="Email"
+          name="email"
+          autoComplete="email"
           className="input input-lg bg-white w-full rounded-full mb-5"
           value={email}
           onChange={onEmailChange}
@@ -87,6 +89,7 @@ export default function FormLogin() {
         <input
           type="password"
           placeholder="Password"
+          name="password"
           className="input input-lg bg-white w-full rounded-full mb-5"
           value={password}
           onChange={onPasswordChange}

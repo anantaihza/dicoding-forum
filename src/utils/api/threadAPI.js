@@ -77,7 +77,7 @@ const createThread = async ({ title, body, category }) => {
     });
     const responseJson = await response.json();
 
-    if (responseJson.statur === 'success') {
+    if (responseJson.status === 'success') {
       return {
         error: false,
         status: responseJson.status,
