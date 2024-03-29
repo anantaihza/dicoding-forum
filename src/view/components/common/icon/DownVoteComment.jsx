@@ -2,6 +2,7 @@ import React from 'react';
 import PropType from 'prop-types';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { getAccessToken } from '../../../../utils/api/userAPI';
 import {
   downVote,
@@ -45,6 +46,7 @@ export default function DownVoteComment({
       try {
         dispatch(neutralizeVote({ threadId: id, commentId: idComment }));
         dispatch(downVote({ threadId: id, commentId: idComment }));
+        toast.info('Berhasil memberikan dislike pada komentar');
       } catch (error) {
         setDown(false);
         setCountDown((prevCount) => prevCount - 1);

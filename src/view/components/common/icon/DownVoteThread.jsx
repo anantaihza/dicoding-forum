@@ -2,6 +2,7 @@ import React from 'react';
 import PropType from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { getAccessToken } from '../../../../utils/api/userAPI';
 import {
   downVote,
@@ -47,6 +48,7 @@ export default function DownVoteThread({
         await dispatch(neutralizeVote(idThread));
         await dispatch(downVote(idThread));
         await dispatch(getThreads());
+        toast.info('Berhasil memberikan dislike');
       } catch (error) {
         setDown(false);
         setCountDown((prevCount) => prevCount - 1);

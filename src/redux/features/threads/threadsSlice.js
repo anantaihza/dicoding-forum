@@ -6,6 +6,7 @@ const threadsSlice = createSlice({
   initialState: {
     datas: null,
     dataDetail: null,
+    dataCreate: null,
     message: null,
     isError: false,
     isLoading: true,
@@ -71,7 +72,7 @@ const threadsSlice = createSlice({
         state.isLoading = false;
         state.message = action.payload.message;
         if (action.payload.data) {
-          state.datas = action.payload.data;
+          state.dataCreate = action.payload.data;
         }
       })
       .addCase(addThread.rejected, (state, action) => {

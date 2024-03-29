@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { setIsError, setMessage } from '../../../redux/features/auth/authSlice';
 import { loginUser } from '../../../redux/features/auth/authThunk';
 
@@ -28,10 +29,12 @@ export default function FormLogin() {
         setEmail('');
         setPassword('');
         Navigate('/');
+        toast.success('Login Berhasil');
       }
     } catch (error) {
       dispatch(setIsError(true));
       dispatch(setMessage(error.message));
+      toast.error(error.message);
     }
   };
 

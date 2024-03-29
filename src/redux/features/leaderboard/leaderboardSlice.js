@@ -8,20 +8,14 @@ const leaderboardSlice = createSlice({
     message: null,
     isError: false,
     isLoading: false,
-    // highScore: 0,
-    // isHighScoreLoading: false,
     highScore: {
       value: 0,
       isHighScoreLoading: true,
     },
-    // totalScore: 0,
-    // isTotalScoreLoading: false,
     totalScore: {
       value: 0,
       isTotalScoreLoading: true,
     },
-    // totalUsers: 0,
-    // isTotalUsersLoading: false,
     totalUsers: {
       value: 0,
       isTotalUsersLoading: true,

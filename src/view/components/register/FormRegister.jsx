@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsError, setMessage } from '../../../redux/features/auth/authSlice';
 import { registerUser } from '../../../redux/features/auth/authThunk';
@@ -43,10 +44,12 @@ export default function FormRegister() {
         setPassword('');
         setRetypePassword('');
         Navigate('/login');
+        toast.success('Register Berhasil');
       }
     } catch (error) {
       dispatch(setIsError(true));
       dispatch(setMessage(error.message));
+      toast.error(error.message);
     }
   };
 

@@ -17,7 +17,7 @@ export default function ListThreads() {
     ? filterThreadByCategory(datas, activeCategory)
     : datas;
 
-  return datas === null ? (
+  return filteredThreads === null ? (
     <div className="flex justify-center items-center w-full h-full">
       <span className="loading loading-spinner loading-lg" />
     </div>

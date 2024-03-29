@@ -2,6 +2,7 @@ import React from 'react';
 import PropType from 'prop-types';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import {
   neutralizeVote,
   upVote,
@@ -47,6 +48,7 @@ export default function UpVoteComment({
       try {
         dispatch(neutralizeVote({ threadId: id, commentId: idComment }));
         dispatch(upVote({ threadId: id, commentId: idComment }));
+        toast.info('Berhasil memberikan like pada komentar');
       } catch (error) {
         setUp(false);
         setCountUp((prevCount) => prevCount - 1);

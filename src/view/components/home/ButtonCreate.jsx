@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import {
   setIsError,
   setMessage,
 } from '../../../redux/features/threads/threadsSlice';
-import { addThread } from '../../../redux/features/threads/threadsThunk';
+import {
+  addThread,
+  getThreads,
+} from '../../../redux/features/threads/threadsThunk';
+
 import { getAccessToken } from '../../../utils/api/userAPI';
 
 export default function ButtonCreate() {
+  const dialogRef = useRef(null);
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
@@ -35,7 +41,9 @@ export default function ButtonCreate() {
         setTitle('');
         setCategory('');
         setBody('');
-        window.location.reload();
+        await dispatch(getThreads());
+        dialogRef.current.close();
+        toast.success('Berhasil membuat diskusi baru');
       }
     } catch (error) {
       dispatch(setIsError(true));
@@ -90,7 +98,11 @@ export default function ButtonCreate() {
         </button>
       )}
 
-      <dialog id="my_modal_3" className="modal backdrop-blur-md bg-white/15">
+      <dialog
+        id="my_modal_3"
+        ref={dialogRef}
+        className="modal backdrop-blur-md bg-white/15"
+      >
         <div className="modal-box bg-white">
           <form method="dialog">
             <button

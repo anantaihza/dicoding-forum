@@ -2,6 +2,7 @@ import React from 'react';
 import PropType from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { getThreads } from '../../../../redux/features/threads/threadsThunk';
 import {
   neutralizeVote,
@@ -47,6 +48,7 @@ export default function UpVoteThread({
         await dispatch(neutralizeVote(idThread));
         await dispatch(upVote(idThread));
         await dispatch(getThreads());
+        toast.info('Berhasil memberikan like');
       } catch (error) {
         setUp(false);
         setCountUp((prevCount) => prevCount - 1);

@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { getAccessToken } from '../../../utils/api/userAPI';
+import { getThreadDetail } from '../../../redux/features/threads/threadsThunk';
 import addComment from '../../../redux/features/comment/commentThunk';
 import {
   setIsError,
@@ -9,6 +11,7 @@ import {
 } from '../../../redux/features/comment/commentSlice';
 
 export default function ButtonAddComment() {
+  const dialogRef = useRef(null);
   const { id } = useParams();
   const dispatch = useDispatch();
   const [content, setContent] = useState('');
@@ -23,7 +26,9 @@ export default function ButtonAddComment() {
       const result = await dispatch(addComment({ threadId: id, content }));
       if (result.payload.status === 'success') {
         setContent('');
-        window.location.reload();
+        dialogRef.current.close();
+        toast.success('Berhasil menambahkan komentar');
+        await dispatch(getThreadDetail(id));
       }
     } catch (error) {
       dispatch(setIsError(true));
@@ -78,7 +83,11 @@ export default function ButtonAddComment() {
         </button>
       )}
 
-      <dialog id="add_comment" className="modal backdrop-blur-md bg-white/15">
+      <dialog
+        id="add_comment"
+        ref={dialogRef}
+        className="modal backdrop-blur-md bg-white/15"
+      >
         <div className="modal-box bg-white">
           <form method="dialog">
             <button

@@ -11,7 +11,6 @@ import FilterCategory from '../components/home/FilterCategory';
 
 export default function Home() {
   const dispatch = useDispatch();
-  // const { listCategory } = useSelector((state) => state.categories);
 
   useEffect(() => {
     dispatch(getCategories());
