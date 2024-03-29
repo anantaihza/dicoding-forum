@@ -57,7 +57,7 @@ export default function Detail() {
                 {getAccessToken() === null ? (
                   <>
                     <UpVoteThread idThread={id} countUp={countUp} />
-                    <DownVoteThread idThread={id} count={countDown} />
+                    <DownVoteThread idThread={id} countDown={countDown} />
                   </>
                 ) : (
                   <>
