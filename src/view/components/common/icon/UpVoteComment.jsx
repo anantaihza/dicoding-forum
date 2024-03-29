@@ -1,43 +1,59 @@
 import React from 'react';
 import PropType from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { getThreads } from '../../../../redux/features/threads/threadsThunk';
 import {
   neutralizeVote,
   upVote,
-} from '../../../../redux/features/voteThread/voteThreadThunk';
+} from '../../../../redux/features/voteComment/voteCommentThunk';
 import { getAccessToken } from '../../../../utils/api/userAPI';
 
-export default function UpVoteComment({ idThread, count, isVoted }) {
+export default function UpVoteComment({
+  idComment,
+  countUp,
+  isUpActive,
+  isDownActive,
+  setUp,
+  setDown,
+  setCountUp,
+  setCountDown,
+}) {
   const dispatch = useDispatch();
-
-  // useState hanya digunakan untuk menerapkan Optimistically Apply Actions
-  const [isMyVote, setIsMyVote] = React.useState(isVoted);
-  const [countVote, setCountVote] = React.useState(count);
+  const { id } = useParams();
 
   const neutralizeVoteHandler = () => {
-    setIsMyVote(false);
-    setCountVote((prevCount) => prevCount - 1);
+    setUp(false);
+    setCountUp((prevCount) => prevCount - 1);
+
     if (getAccessToken() !== null) {
       try {
-        dispatch(neutralizeVote(idThread));
-        dispatch(getThreads());
+        dispatch(neutralizeVote({ threadId: id, commentId: idComment }));
       } catch (error) {
-        setIsMyVote(true);
+        setUp(true);
+        setCountUp((prevCount) => prevCount + 1);
       }
     }
   };
 
   const upVoteHandler = () => {
-    setIsMyVote(true);
-    setCountVote((prevCount) => prevCount + 1);
+    setUp(true);
+    setCountUp((prevCount) => prevCount + 1);
+    if (isDownActive) {
+      setDown(false);
+      setCountDown((prevCount) => prevCount - 1);
+    }
+
     if (getAccessToken() !== null) {
       try {
-        dispatch(upVote(idThread));
-        dispatch(getThreads());
+        dispatch(neutralizeVote({ threadId: id, commentId: idComment }));
+        dispatch(upVote({ threadId: id, commentId: idComment }));
       } catch (error) {
-        setIsMyVote(false);
+        setUp(false);
+        setCountUp((prevCount) => prevCount - 1);
+        if (!isDownActive) {
+          setDown(true);
+          setCountDown((prevCount) => prevCount + 1);
+        }
       }
     }
   };
@@ -61,12 +77,12 @@ export default function UpVoteComment({ idThread, count, isVoted }) {
             />
           </svg>
         </Link>
-        <p>{count}</p>
+        <p>{countUp}</p>
       </div>
     );
   }
 
-  if (isMyVote) {
+  if (isUpActive) {
     return (
       <div className="flex items-center gap-2">
         <button
@@ -84,7 +100,7 @@ export default function UpVoteComment({ idThread, count, isVoted }) {
             <path d="M7.493 18.5c-.425 0-.82-.236-.975-.632A7.48 7.48 0 0 1 6 15.125c0-1.75.599-3.358 1.602-4.634.151-.192.373-.309.6-.397.473-.183.89-.514 1.212-.924a9.042 9.042 0 0 1 2.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 0 0 .322-1.672V2.75A.75.75 0 0 1 15 2a2.25 2.25 0 0 1 2.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 0 1-2.649 7.521c-.388.482-.987.729-1.605.729H14.23c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 0 0-1.423-.23h-.777ZM2.331 10.727a11.969 11.969 0 0 0-.831 4.398 12 12 0 0 0 .52 3.507C2.28 19.482 3.105 20 3.994 20H4.9c.445 0 .72-.498.523-.898a8.963 8.963 0 0 1-.924-3.977c0-1.708.476-3.305 1.302-4.666.245-.403-.028-.959-.5-.959H4.25c-.832 0-1.612.453-1.918 1.227Z" />
           </svg>
         </button>
-        <p>{countVote}</p>
+        <p>{countUp}</p>
       </div>
     );
   }
@@ -111,17 +127,27 @@ export default function UpVoteComment({ idThread, count, isVoted }) {
           />
         </svg>
       </button>
-      <p>{countVote}</p>
+      <p>{countUp}</p>
     </div>
   );
 }
 
 UpVoteComment.propTypes = {
-  count: PropType.number.isRequired,
-  isVoted: PropType.bool,
-  idThread: PropType.string.isRequired,
+  idComment: PropType.string.isRequired,
+  countUp: PropType.number.isRequired,
+  isUpActive: PropType.bool,
+  isDownActive: PropType.bool,
+  setUp: PropType.func,
+  setDown: PropType.func,
+  setCountUp: PropType.func,
+  setCountDown: PropType.func,
 };
 
 UpVoteComment.defaultProps = {
-  isVoted: false,
+  isUpActive: false,
+  isDownActive: false,
+  setUp: () => {},
+  setDown: () => {},
+  setCountUp: () => {},
+  setCountDown: () => {},
 };

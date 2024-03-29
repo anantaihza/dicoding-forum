@@ -12,17 +12,14 @@ import { getThreads } from '../../../../redux/features/threads/threadsThunk';
 export default function DownVoteThread({
   idThread,
   countDown,
-  setCountDown,
-  setCountUp,
   isUpActive,
-  setUp,
   isDownActive,
+  setUp,
   setDown,
+  setCountUp,
+  setCountDown,
 }) {
   const dispatch = useDispatch();
-
-  // const [isMyVote, setIsMyVote] = React.useState(isVoted);
-  // const [countVote, setCountVote] = React.useState(count);
 
   const neutralizeVoteHandler = () => {
     setDown(false);
@@ -139,21 +136,19 @@ export default function DownVoteThread({
 DownVoteThread.propTypes = {
   idThread: PropType.string.isRequired,
   countDown: PropType.number.isRequired,
-  setCountDown: PropType.func,
-  setCountUp: PropType.func,
   isUpActive: PropType.bool,
-  setUp: PropType.func,
   isDownActive: PropType.bool,
+  setUp: PropType.func,
   setDown: PropType.func,
-  // isVoted: PropType.bool,
+  setCountUp: PropType.func,
+  setCountDown: PropType.func,
 };
 
 DownVoteThread.defaultProps = {
-  // isVoted: false,
   isUpActive: false,
-  setUp: () => {},
   isDownActive: false,
+  setUp: () => {},
   setDown: () => {},
-  setCountDown: () => {},
   setCountUp: () => {},
+  setCountDown: () => {},
 };

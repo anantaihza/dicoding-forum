@@ -15,7 +15,7 @@ function App() {
   // getUsers is called here because it is too much
   useEffect(() => {
     dispatch(getUsers());
-  });
+  }, [dispatch]);
 
   return (
     <Router>

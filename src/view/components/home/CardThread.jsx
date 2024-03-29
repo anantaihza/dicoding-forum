@@ -18,6 +18,7 @@ export default function CardThread({ thread }) {
   const myProfile = useSelector((state) => state.auth.data);
   const profile = getProfileUserThread(users, thread?.ownerId);
 
+  // state for controlled component
   const [isUpVoteActive, setIsUpVoteActive] = useState(false);
   const [isDownVoteActive, setIsDownVoteActive] = useState(false);
   const [countUp, setCountUp] = useState(0);
@@ -61,29 +62,29 @@ export default function CardThread({ thread }) {
             {getAccessToken() === null ? (
               <>
                 <UpVoteThread idThread={thread?.id} countUp={countUp} />
-                <DownVoteThread idThread={thread?.id} count={countDown} />
+                <DownVoteThread idThread={thread?.id} countDown={countDown} />
               </>
             ) : (
               <>
                 <UpVoteThread
                   idThread={thread?.id}
                   countUp={countUp}
+                  isUpActive={isUpVoteActive}
+                  isDownActive={isDownVoteActive}
+                  setUp={setIsUpVoteActive}
+                  setDown={setIsDownVoteActive}
                   setCountUp={setCountUp}
                   setCountDown={setCountDown}
-                  isUpActive={isUpVoteActive}
-                  setUp={setIsUpVoteActive}
-                  isDownActive={isDownVoteActive}
-                  setDown={setIsDownVoteActive}
                 />
                 <DownVoteThread
                   idThread={thread?.id}
                   countDown={countDown}
-                  setCountDown={setCountDown}
-                  setCountUp={setCountUp}
                   isUpActive={isUpVoteActive}
-                  setUp={setIsUpVoteActive}
                   isDownActive={isDownVoteActive}
+                  setUp={setIsUpVoteActive}
                   setDown={setIsDownVoteActive}
+                  setCountUp={setCountUp}
+                  setCountDown={setCountDown}
                 />
               </>
             )}

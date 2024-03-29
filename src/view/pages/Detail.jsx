@@ -7,7 +7,7 @@ import Navbar from '../components/common/Navbar';
 import UpVoteThread from '../components/common/icon/UpVoteThread';
 import DownVoteThread from '../components/common/icon/DownVoteThread';
 import TitleDetail from '../components/detail/TitleDetail';
-// import CommentList from '../components/detail/CommentList';
+import CommentList from '../components/detail/CommentList';
 import ContentDetail from '../components/detail/ContentDetail';
 import ButtonAddComment from '../components/detail/ButtonAddComment';
 import { getAccessToken } from '../../utils/api/userAPI';
@@ -79,7 +79,7 @@ export default function Detail() {
                 )}
               </div>
               <ButtonAddComment />
-              {/* <CommentList /> */}
+              <CommentList />
             </div>
           </div>
         </div>

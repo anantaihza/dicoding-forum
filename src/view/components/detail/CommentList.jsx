@@ -13,7 +13,7 @@ export default function CommentList() {
 
       <div className="mt-5">
         {comments?.map((comment) => (
-          <CommentItem key={comment.id} comment={comment} />
+          <CommentItem key={comment?.id} comment={comment} />
         ))}
       </div>
     </div>

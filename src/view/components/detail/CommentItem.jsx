@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropType from 'prop-types';
 import parser from 'html-react-parser';
 import { useSelector } from 'react-redux';
@@ -10,6 +10,19 @@ import { getAccessToken } from '../../../utils/api/userAPI';
 
 export default function CommentItem({ comment }) {
   const myProfile = useSelector((state) => state.auth.data);
+
+  // state for controlled component
+  const [isUpVoteActive, setIsUpVoteActive] = useState(false);
+  const [isDownVoteActive, setIsDownVoteActive] = useState(false);
+  const [countUp, setCountUp] = useState(0);
+  const [countDown, setCountDown] = useState(0);
+
+  useEffect(() => {
+    setIsUpVoteActive(isMyIdVote(myProfile?.id, comment?.upVotesBy));
+    setIsDownVoteActive(isMyIdVote(myProfile?.id, comment?.downVotesBy));
+    setCountUp(summaryVote(comment?.upVotesBy));
+    setCountDown(summaryVote(comment?.downVotesBy));
+  }, [comment, myProfile]);
   return (
     <>
       <div className="flex gap-6 flex-col md:flex-row">
@@ -31,18 +44,33 @@ export default function CommentItem({ comment }) {
           <div className="flex gap-5 mt-5">
             {getAccessToken() === null ? (
               <>
-                <UpVoteComment count={summaryVote(comment?.upVotesBy)} />
-                <DownVoteComment count={summaryVote(comment?.downVotesBy)} />
+                <UpVoteComment idComment={comment?.id} countUp={countUp} />
+                <DownVoteComment
+                  idComment={comment?.id}
+                  countDown={countDown}
+                />
               </>
             ) : (
               <>
                 <UpVoteComment
-                  count={summaryVote(comment?.upVotesBy)}
-                  isVoted={isMyIdVote(myProfile?.id, comment?.upVotesBy)}
+                  idComment={comment?.id}
+                  countUp={countUp}
+                  isUpActive={isUpVoteActive}
+                  isDownActive={isDownVoteActive}
+                  setUp={setIsUpVoteActive}
+                  setDown={setIsDownVoteActive}
+                  setCountUp={setCountUp}
+                  setCountDown={setCountDown}
                 />
                 <DownVoteComment
-                  count={summaryVote(comment?.downVotesBy)}
-                  isVoted={isMyIdVote(myProfile?.id, comment?.downVotesBy)}
+                  idComment={comment?.id}
+                  countDown={countDown}
+                  isUpActive={isUpVoteActive}
+                  isDownActive={isDownVoteActive}
+                  setUp={setIsUpVoteActive}
+                  setDown={setIsDownVoteActive}
+                  setCountUp={setCountUp}
+                  setCountDown={setCountDown}
                 />
               </>
             )}

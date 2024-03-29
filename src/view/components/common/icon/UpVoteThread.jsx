@@ -11,20 +11,15 @@ import { getAccessToken } from '../../../../utils/api/userAPI';
 
 export default function UpVoteThread({
   idThread,
+  setUp,
+  setDown,
   countUp,
+  isUpActive,
+  isDownActive,
   setCountUp,
   setCountDown,
-  // isVoted,
-  isUpActive,
-  setUp,
-  isDownActive,
-  setDown,
 }) {
   const dispatch = useDispatch();
-
-  // useState hanya digunakan untuk menerapkan Optimistically Apply Actions
-  // const [isMyVote, setIsMyVote] = React.useState(isVoted);
-  // const [countVote, setCountVote] = React.useState(count);
 
   const neutralizeVoteHandler = () => {
     setUp(false);
@@ -139,22 +134,20 @@ export default function UpVoteThread({
 
 UpVoteThread.propTypes = {
   idThread: PropType.string.isRequired,
-  countUp: PropType.number.isRequired,
-  setCountUp: PropType.func,
-  setCountDown: PropType.func,
-  isUpActive: PropType.bool,
   setUp: PropType.func,
+  countUp: PropType.number.isRequired,
+  isUpActive: PropType.bool,
   isDownActive: PropType.bool,
   setDown: PropType.func,
-  // isVoted: PropType.bool,
+  setCountUp: PropType.func,
+  setCountDown: PropType.func,
 };
 
 UpVoteThread.defaultProps = {
-  // isVoted: false,
   isUpActive: false,
   isDownActive: false,
-  setDown: () => {},
   setUp: () => {},
+  setDown: () => {},
   setCountUp: () => {},
   setCountDown: () => {},
 };
