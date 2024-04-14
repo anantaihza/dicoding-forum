@@ -1,5 +1,8 @@
 import { expect, it, describe } from 'vitest';
-import threadReducer, { setIsError, setMessage } from './threadsSlice';
+import threadReducer, {
+  setIsError,
+  setMessage,
+} from '../../redux/features/threads/threadsSlice';
 
 describe('Thread reducers test', () => {
   const initialState = {

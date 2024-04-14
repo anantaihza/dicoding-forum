@@ -1,6 +1,6 @@
 import { expect, it, describe } from 'vitest';
-import leaderboardReducer from './leaderboardSlice';
-import getAllLeaderboard from './leaderboardThunk';
+import leaderboardReducer from '../../redux/features/leaderboard/leaderboardSlice';
+import getAllLeaderboard from '../../redux/features/leaderboard/leaderboardThunk';
 
 describe('Leaderboard reducer test', () => {
   const initialState = {

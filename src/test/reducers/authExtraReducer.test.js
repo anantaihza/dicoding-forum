@@ -1,8 +1,12 @@
 import { expect, it, describe, beforeEach, afterEach } from 'vitest';
-import { registerUser, loginUser, getProfileUser } from './authThunk';
-import authReducer from './authSlice';
-import mockLocalStorage from '../../../utils/test/mockLocalStorage';
-import { getAccessToken } from '../../../utils/api/userAPI';
+import {
+  registerUser,
+  loginUser,
+  getProfileUser,
+} from '../../redux/features/auth/authThunk';
+import authReducer from '../../redux/features/auth/authSlice';
+import mockLocalStorage from '../../utils/test/mockLocalStorage';
+import { getAccessToken } from '../../utils/api/userAPI';
 
 describe('Authentication extraReducers test', () => {
   const initialState = {

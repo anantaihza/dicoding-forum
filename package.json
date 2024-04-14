@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "lint": "eslint . --ext .js,.jsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write .",
-    "test": "vitest --watch=false --reporter=verbose"
+    "test": "vitest --watch=false --reporter=verbose",
+    "reducers:test": "vitest reducers --watch=false --reporter=verbose"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.2",

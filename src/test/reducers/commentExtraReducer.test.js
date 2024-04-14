@@ -1,6 +1,6 @@
 import { expect, it, describe } from 'vitest';
-import commentReducer from './commentSlice';
-import addComment from './commentThunk';
+import commentReducer from '../../redux/features/comment/commentSlice';
+import addComment from '../../redux/features/comment/commentThunk';
 
 describe('Comment reducer test', () => {
   const initialState = {

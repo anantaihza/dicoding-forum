@@ -1,6 +1,6 @@
 import { expect, it, describe } from 'vitest';
-import usersReducer from './usersSlice';
-import getUsers from './usersThunk';
+import usersReducer from '../../redux/features/users/usersSlice';
+import getUsers from '../../redux/features/users/usersThunk';
 
 describe('Users reducer test', () => {
   const initialState = {

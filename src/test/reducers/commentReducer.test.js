@@ -1,10 +1,12 @@
 import { expect, it, describe } from 'vitest';
-import authReducer, { setIsError, setMessage } from './authSlice';
+import commentReducer, {
+  setIsError,
+  setMessage,
+} from '../../redux/features/comment/commentSlice';
 
 describe('Authentication reducers test', () => {
   const initialState = {
-    data: null,
-    token: null,
+    comments: null,
     message: null,
     isError: false,
     isLoading: false,
@@ -16,7 +18,7 @@ describe('Authentication reducers test', () => {
     const action = {};
 
     // Action
-    const nextState = authReducer(state, action);
+    const nextState = commentReducer(state, action);
 
     // Assert
     expect(nextState).toEqual(initialState);
@@ -28,7 +30,7 @@ describe('Authentication reducers test', () => {
     const action = setMessage(newMessage);
 
     // Action
-    const nextState = authReducer(initialState, action);
+    const nextState = commentReducer(initialState, action);
 
     // Assert
     expect(nextState.message).toEqual(newMessage);
@@ -40,7 +42,7 @@ describe('Authentication reducers test', () => {
     const action = setIsError(newIsError);
 
     // Action
-    const nextState = authReducer(initialState, action);
+    const nextState = commentReducer(initialState, action);
 
     // Assert
     expect(nextState.isError).toEqual(newIsError);

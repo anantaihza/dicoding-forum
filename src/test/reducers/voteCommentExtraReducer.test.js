@@ -1,6 +1,10 @@
 import { expect, it, describe } from 'vitest';
-import voteCommentReducer from './voteThreadSlice';
-import { upVote, downVote, neutralizeVote } from './voteThreadThunk';
+import voteCommentReducer from '../../redux/features/voteComment/voteCommentSlice';
+import {
+  upVote,
+  downVote,
+  neutralizeVote,
+} from '../../redux/features/voteComment/voteCommentThunk';
 
 describe('Vote Comment reducers test', () => {
   const initialState = {
@@ -34,7 +38,7 @@ describe('Vote Comment reducers test', () => {
         data: {
           id: 'vote-1',
           userId: 'users-1',
-          threadId: 'thread-1',
+          commentId: 'comment-1',
           voteType: 1,
         },
       });
@@ -45,7 +49,7 @@ describe('Vote Comment reducers test', () => {
         vote: {
           id: 'vote-1',
           userId: 'users-1',
-          threadId: 'thread-1',
+          commentId: 'comment-1',
           voteType: 1,
         },
         message: 'success',
@@ -115,7 +119,7 @@ describe('Vote Comment reducers test', () => {
         data: {
           id: 'vote-1',
           userId: 'users-1',
-          threadId: 'thread-1',
+          commentId: 'comment-1',
           voteType: -1,
         },
       });
@@ -126,7 +130,7 @@ describe('Vote Comment reducers test', () => {
         vote: {
           id: 'vote-1',
           userId: 'users-1',
-          threadId: 'thread-1',
+          commentId: 'comment-1',
           voteType: -1,
         },
         message: 'success',
@@ -196,7 +200,7 @@ describe('Vote Comment reducers test', () => {
         data: {
           id: 'vote-1',
           userId: 'users-1',
-          threadId: 'thread-1',
+          commentId: 'comment-1',
           voteType: 0,
         },
       });
@@ -207,7 +211,7 @@ describe('Vote Comment reducers test', () => {
         vote: {
           id: 'vote-1',
           userId: 'users-1',
-          threadId: 'thread-1',
+          commentId: 'comment-1',
           voteType: 0,
         },
         message: 'success',

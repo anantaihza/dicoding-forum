@@ -3,7 +3,7 @@ import leaderboardReducer, {
   countHighScore,
   countTotalScore,
   countTotalUsers,
-} from './leaderboardSlice';
+} from '../../redux/features/leaderboard/leaderboardSlice';
 
 describe('Leaderboard reducers test', () => {
   let initialState;

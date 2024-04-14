@@ -1,6 +1,6 @@
 import { expect, it, describe } from 'vitest';
-import categoriesReducer from './categoriesSlice';
-import getCategories from './categoriesThunk';
+import categoriesReducer from '../../redux/features/categories/categoriesSlice';
+import getCategories from '../../redux/features/categories/categoriesThunk';
 
 describe('Categories reducer test', () => {
   const initialState = {

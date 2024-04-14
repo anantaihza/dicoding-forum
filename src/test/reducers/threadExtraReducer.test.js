@@ -1,6 +1,10 @@
 import { expect, it, describe } from 'vitest';
-import { getThreads, getThreadDetail, addThread } from './threadsThunk';
-import threadsReducer from './threadsSlice';
+import {
+  getThreads,
+  getThreadDetail,
+  addThread,
+} from '../../redux/features/threads/threadsThunk';
+import threadsReducer from '../../redux/features/threads/threadsSlice';
 
 describe('Thread extraReducers test', () => {
   const initialState = {

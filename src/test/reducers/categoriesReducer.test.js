@@ -1,5 +1,7 @@
 import { expect, it, describe } from 'vitest';
-import categoriesReducer, { setActiveCategory } from './categoriesSlice';
+import categoriesReducer, {
+  setActiveCategory,
+} from '../../redux/features/categories/categoriesSlice';
 
 describe('Categories reducers test', () => {
   const initialState = {
