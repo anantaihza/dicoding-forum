@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import getLeaderboard from '../../../utils/api/leaderboardAPI';
+import { getLeaderboards } from '../../../utils/api/leaderboardAPI';
 
 const getAllLeaderboard = createAsyncThunk(
   'leaderboard/getAllLeaderboard',
   async () => {
-    const response = await getLeaderboard();
+    const response = await getLeaderboards();
     return response;
   }
 );

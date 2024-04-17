@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import createComment from '../../../utils/api/commentAPI';
+import { createComment } from '../../../utils/api/commentAPI';
 
 const addComment = createAsyncThunk(
   'comment/addComment',
