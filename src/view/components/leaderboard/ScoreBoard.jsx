@@ -22,7 +22,7 @@ export default function ScoreBoard() {
           <tbody>
             {listBoard?.map((board, index) => (
               <tr key={board?.user?.id} className="hover">
-                <th>{index + 1}</th>
+                <td>{index + 1}</td>
                 <td>
                   <div className="flex items-center gap-5">
                     <div className="avatar placeholder">
