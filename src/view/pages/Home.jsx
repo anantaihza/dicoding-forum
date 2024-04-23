@@ -41,7 +41,6 @@ export default function Home() {
         <div className="flex-col xl:gap-8 mt-20 hidden xl:flex">
           {loadingCategory ? <SkeletonCategory /> : <CategoryPopular />}
           {loadingLeaderboard ? <SkeletonLeaderboard /> : <FlashLeaderboard />}
-          {/* <FlashLeaderboard /> */}
         </div>
       </div>
     </div>

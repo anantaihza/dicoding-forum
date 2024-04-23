@@ -19,14 +19,16 @@ export default function ListThreads() {
     : datas;
 
   return filteredThreads === null ? (
-    <div>
+    <div className="list-threads">
       {[...Array(10)].map(() => (
         <SkeletonCard key={Math.random()} />
       ))}
     </div>
   ) : (
-    filteredThreads?.map((thread) => (
-      <CardThread key={thread.id} thread={thread} />
-    ))
+    <div className="list-threads">
+      {filteredThreads?.map((thread) => (
+        <CardThread key={thread.id} thread={thread} />
+      ))}
+    </div>
   );
 }

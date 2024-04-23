@@ -38,7 +38,7 @@ export default function CardThread({ thread }) {
   }, [thread, myProfile]);
 
   return (
-    <div className="card p-2 w-full grow bg-white my-8 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-105 duration-300 hover:shadow-xl-primary">
+    <div className="card card-thread p-2 w-full grow bg-white my-8 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-105 duration-300 hover:shadow-xl-primary">
       <div className="card-body flex flex-col md:flex-row gap-10">
         {profile ? (
           <div className="avatar">

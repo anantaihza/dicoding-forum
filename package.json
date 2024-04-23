@@ -9,10 +9,12 @@
     "preview": "vite preview",
     "lint": "eslint . --ext .js,.jsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write .",
-    "test": "vitest --watch=false --reporter=verbose",
+    "test": "vitest --watch=false",
     "test:reducers": "vitest reducers-test --watch=false --reporter=verbose",
     "test:thunks": "vitest thunks-test --watch=false --reporter=verbose",
-    "test:components": "vitest components-test --watch=false --reporter=verbose"
+    "test:components": "vitest components-test --watch=false --reporter=verbose",
+    "test:e2e": "cypress run",
+    "open:e2e": "npx cypress open"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.2",
@@ -32,10 +34,12 @@
     "@types/react-dom": "^18.2.21",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.18",
+    "cypress": "^13.8.0",
     "daisyui": "^4.7.3",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-cypress": "^2.15.2",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-prettier": "^5.1.3",

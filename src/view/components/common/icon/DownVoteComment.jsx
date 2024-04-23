@@ -63,7 +63,11 @@ export default function DownVoteComment({
   if (getAccessToken() === null) {
     return (
       <div className="flex items-center gap-2">
-        <Link to="/login" aria-label="downvote" className="hover:text-primary">
+        <Link
+          to="/login"
+          aria-label="downvote-comment"
+          className="hover:text-primary"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -90,7 +94,7 @@ export default function DownVoteComment({
       <div className="flex items-center gap-2">
         <button
           type="button"
-          aria-label="downvote"
+          aria-label="downvote-comment"
           className="hover:text-primary"
           onClick={neutralizeVoteHandler}
         >
@@ -113,7 +117,7 @@ export default function DownVoteComment({
     <div className="flex items-center gap-2">
       <button
         type="button"
-        aria-label="downvote"
+        aria-label="downvote-comment"
         className="hover:text-primary"
         onClick={downVoteHandler}
       >

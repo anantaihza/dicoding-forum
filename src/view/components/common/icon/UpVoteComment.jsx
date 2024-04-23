@@ -65,7 +65,11 @@ export default function UpVoteComment({
   if (getAccessToken() === null) {
     return (
       <div className="flex items-center gap-2">
-        <Link to="/login" aria-label="upvote" className="hover:text-primary">
+        <Link
+          to="/login"
+          aria-label="upvote-comment"
+          className="hover:text-primary"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -92,7 +96,7 @@ export default function UpVoteComment({
       <div className="flex items-center gap-2">
         <button
           type="button"
-          aria-label="upvote"
+          aria-label="upvote-comment"
           className="hover:text-primary"
           onClick={neutralizeVoteHandler}
         >
@@ -114,7 +118,7 @@ export default function UpVoteComment({
     <div className="flex items-center gap-2">
       <button
         type="button"
-        aria-label="upvote"
+        aria-label="upvote-comment"
         className="hover:text-primary"
         onClick={upVoteHandler}
       >

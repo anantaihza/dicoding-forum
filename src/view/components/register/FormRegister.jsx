@@ -37,14 +37,16 @@ export default function FormRegister() {
   const onSubmitRegister = async (event) => {
     event.preventDefault();
     try {
-      const result = await dispatch(registerUser({ name, email, password }));
-      if (result.payload.status === 'success') {
-        setName('');
-        setEmail('');
-        setPassword('');
-        setRetypePassword('');
-        Navigate('/login');
-        toast.success('Register Berhasil');
+      if (isPasswordMatch()) {
+        const result = await dispatch(registerUser({ name, email, password }));
+        if (result.payload.status === 'success') {
+          setName('');
+          setEmail('');
+          setPassword('');
+          setRetypePassword('');
+          Navigate('/login');
+          toast.success('Register Berhasil');
+        }
       }
     } catch (error) {
       dispatch(setIsError(true));

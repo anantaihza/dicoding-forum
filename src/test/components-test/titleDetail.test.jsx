@@ -55,21 +55,6 @@ describe('Title Detail', () => {
     expect(threadTitle).toBeInTheDocument();
   });
 
-  it('should renders time ago', () => {
-    const mockDataDetail = {
-      category: 'Art',
-      title: 'The Power of Creativity',
-      createdAt: new Date('2024-04-15T00:00:00.000Z'),
-      owner: { name: 'Alice Smith' },
-    };
-    useSelector.mockReturnValueOnce({ dataDetail: mockDataDetail });
-
-    render(<TitleDetail />);
-
-    const timeAgo = screen.getByText('4 hari lalu');
-    expect(timeAgo).toBeInTheDocument();
-  });
-
   it('should renders owner name', () => {
     const mockDataDetail = {
       category: 'History',

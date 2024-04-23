@@ -25,7 +25,7 @@ export default function CommentItem({ comment }) {
   }, [comment, myProfile]);
   return (
     <>
-      <div className="flex gap-6 flex-col md:flex-row">
+      <div className="comment-item flex gap-6 flex-col md:flex-row">
         <div className="avatar placeholder">
           <div className="w-12 h-12 rounded-full">
             <img src={comment?.owner?.avatar} alt={comment?.owner?.name} />
