@@ -12,6 +12,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'airbnb',
     'prettier',
+    'plugin:storybook/recommended',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parserOptions: {
