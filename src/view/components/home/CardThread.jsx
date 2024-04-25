@@ -110,5 +110,8 @@ export default function CardThread({ thread }) {
 }
 
 CardThread.propTypes = {
+  /**
+   * Data thread
+   */
   thread: PropType.object.isRequired,
 };

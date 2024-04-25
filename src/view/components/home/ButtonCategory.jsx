@@ -30,6 +30,12 @@ export default function ButtonCategory({ name, isSelected }) {
 }
 
 ButtonCategory.propTypes = {
+  /**
+   * Category name
+   */
   name: PropType.string.isRequired,
+  /**
+   * Is category selected?
+   */
   isSelected: PropType.bool.isRequired,
 };

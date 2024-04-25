@@ -20,7 +20,6 @@ export default {
       },
     },
   },
-  tags: ['autodocs'],
   decorators: [
     (Story) => (
       <Provider store={store}>
