@@ -7,7 +7,7 @@ export default function Register() {
       <div className="container mx-auto h-screen flex justify-center">
         <div className="w-6/12 self-end hidden lg:block">
           <img
-            src="/src/assets/img/img-register.png"
+            src="/img-register.png"
             alt="LoginImage"
             className="w-full"
           />

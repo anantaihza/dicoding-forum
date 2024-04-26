@@ -7,7 +7,7 @@ export default function Login() {
       <div className="container mx-auto h-screen flex justify-center">
         <div className="w-7/12 self-end hidden lg:block">
           <img
-            src="/src/assets/img/img-login.png"
+            src="/img-login.png"
             alt="LoginImage"
             className="xl:w-[97.5%]"
           />
