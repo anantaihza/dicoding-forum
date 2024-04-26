@@ -17,7 +17,8 @@
     "test:all": "concurrently -g \"npm run test:e2e\" \"npm run test\"",
     "open:e2e": "npx cypress open",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "ci:test": "start-server-and-test dev http-get://localhost:5173 test:e2e && vitest --no-watch"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.2",
@@ -63,6 +64,7 @@
     "jsdom": "^24.0.0",
     "postcss": "^8.4.36",
     "prettier": "^3.2.5",
+    "start-server-and-test": "^2.0.3",
     "storybook": "^8.0.9",
     "tailwindcss": "^3.4.1",
     "vite": "^5.1.6",
