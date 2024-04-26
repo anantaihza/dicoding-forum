@@ -11,14 +11,13 @@ vi.mock('react-redux', () => ({
   useSelector: vi.fn(),
 }));
 
-vi.mock('../../utils/timeAgo', async (importOriginal) => {
-  const actual = await importOriginal();
-  return {
-    ...actual,
-    getTimeAgo: vi.fn(),
-    // getTimeAgo: vi.fn().mockReturnValue('2 hari lalu'),
-  };
-});
+// vi.mock('../../utils/timeAgo', async (importOriginal) => {
+//   const actual = await importOriginal();
+//   return {
+//     ...actual,
+//     getTimeAgo: vi.fn().mockReturnValue('2 hari lalu'),
+//   };
+// });
 
 /**
  *
