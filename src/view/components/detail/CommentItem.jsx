@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import UpVoteComment from '../common/icon/UpVoteComment';
 import DownVoteComment from '../common/icon/DownVoteComment';
 import getTimeAgo from '../../../utils/TimeAgo';
-import { summaryVote, isMyIdVote } from '../../../utils/countVote';
+import { summaryVote, isMyIdVote } from '../../../utils/CountVote';
 import { getAccessToken } from '../../../utils/api/userAPI';
 
 export default function CommentItem({ comment }) {
