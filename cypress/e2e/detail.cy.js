@@ -90,7 +90,7 @@ describe('Detail Page', () => {
         'http://localhost:5173/detail/thread-Np47p4jhUXYhrhRn'
       );
 
-      cy.wait(3000);
+      cy.wait(5000);
     });
 
     describe('Like and Dislike Thread', () => {
@@ -101,7 +101,7 @@ describe('Detail Page', () => {
           'text-red-500'
         );
 
-        cy.wait(1000);
+        cy.wait(2000);
 
         cy.get('button[aria-label="upvote"]').click();
         cy.get('svg[data-testid="upvote-icon"]').should(
@@ -117,7 +117,7 @@ describe('Detail Page', () => {
           'text-red-500'
         );
 
-        cy.wait(1000);
+        cy.wait(2000);
 
         cy.get('button[aria-label="downvote"]').click();
         cy.get('svg[data-testid="downvote-icon"]').should(
@@ -157,7 +157,7 @@ describe('Detail Page', () => {
               'text-red-500'
             );
 
-            cy.wait(1000);
+            cy.wait(2000);
 
             cy.get('button[aria-label="upvote-comment"]').click();
             cy.get('svg[data-testid="up-vote-icon"]').should(
@@ -177,7 +177,7 @@ describe('Detail Page', () => {
               'text-red-500'
             );
 
-            cy.wait(1000);
+            cy.wait(2000);
 
             cy.get('button[aria-label="downvote-comment"]').click();
             cy.get('svg[data-testid="down-vote-icon"]').should(
