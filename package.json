@@ -18,7 +18,7 @@
     "open:e2e": "npx cypress open",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "ci:test": "vitest --no-watch && start-server-and-test dev http-get://localhost:5173 test:e2e"
+    "ci:test": "vitest --no-watch --reporter=verbose && start-server-and-test dev http-get://localhost:5173 test:e2e"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.2",
