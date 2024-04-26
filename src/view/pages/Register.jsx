@@ -6,11 +6,7 @@ export default function Register() {
     <div className="bg-base-100">
       <div className="container mx-auto h-screen flex justify-center">
         <div className="w-6/12 self-end hidden lg:block">
-          <img
-            src="/src/assets/img/img-register.png"
-            alt="LoginImage"
-            className="w-full"
-          />
+          <img src="/img-register.png" alt="LoginImage" className="w-full" />
         </div>
         <div className="text-center w-6/12 grow self-center">
           <h2 className="text-5xl poppins-bold text-primary">Register</h2>

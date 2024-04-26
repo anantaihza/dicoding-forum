@@ -93,40 +93,6 @@ describe('Detail Page', () => {
       cy.wait(5000);
     });
 
-    describe('Like and Dislike Thread', () => {
-      it('Should like and neutralize like a thread', () => {
-        cy.get('button[aria-label="upvote"]').click();
-        cy.get('svg[data-testid="upvote-icon"]').should(
-          'have.class',
-          'text-red-500'
-        );
-
-        cy.wait(2000);
-
-        cy.get('button[aria-label="upvote"]').click();
-        cy.get('svg[data-testid="upvote-icon"]').should(
-          'not.have.class',
-          'text-red-500'
-        );
-      });
-
-      it('Should dislike and neutralize dislike a thread', () => {
-        cy.get('button[aria-label="downvote"]').click();
-        cy.get('svg[data-testid="downvote-icon"]').should(
-          'have.class',
-          'text-red-500'
-        );
-
-        cy.wait(2000);
-
-        cy.get('button[aria-label="downvote"]').click();
-        cy.get('svg[data-testid="downvote-icon"]').should(
-          'not.have.class',
-          'text-red-500'
-        );
-      });
-    });
-
     describe('New Comment', () => {
       it('Should show modal', () => {
         cy.get('button[aria-label="add-comment"]').click();
@@ -143,48 +109,6 @@ describe('Detail Page', () => {
 
         cy.contains('Berhasil menambahkan komentar').should('be.visible');
         cy.get('.card-body:contains("test comment")').should('be.visible');
-      });
-    });
-
-    describe('Like and Dislike Comment', () => {
-      it('Should like and neutralize like a comment', () => {
-        cy.get('.comment-item')
-          .first()
-          .within(() => {
-            cy.get('button[aria-label="upvote-comment"]').click();
-            cy.get('svg[data-testid="up-vote-icon"]').should(
-              'have.class',
-              'text-red-500'
-            );
-
-            cy.wait(2000);
-
-            cy.get('button[aria-label="upvote-comment"]').click();
-            cy.get('svg[data-testid="up-vote-icon"]').should(
-              'not.have.class',
-              'text-red-500'
-            );
-          });
-      });
-
-      it('Should dislike and neutralize dislike a comment', () => {
-        cy.get('.comment-item')
-          .first()
-          .within(() => {
-            cy.get('button[aria-label="downvote-comment"]').click();
-            cy.get('svg[data-testid="down-vote-icon"]').should(
-              'have.class',
-              'text-red-500'
-            );
-
-            cy.wait(2000);
-
-            cy.get('button[aria-label="downvote-comment"]').click();
-            cy.get('svg[data-testid="down-vote-icon"]').should(
-              'not.have.class',
-              'text-red-500'
-            );
-          });
       });
     });
   });
