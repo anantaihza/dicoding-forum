@@ -23,11 +23,7 @@ export default function Navbar() {
       <div className="container mx-auto">
         <div className="navbar-start">
           <div className="flex items-center">
-            <img
-              src="/logo.png"
-              alt="Logo"
-              className="w-14 mr-2"
-            />
+            <img src="/logo.png" alt="Logo" className="w-14 mr-2" />
             <Link
               to="/"
               className="text-base poppins-extrabold text-start leading-4"
