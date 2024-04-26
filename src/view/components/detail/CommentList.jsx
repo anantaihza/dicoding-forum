@@ -11,7 +11,7 @@ export default function CommentList() {
         Komentar ({comments?.length})
       </h3>
 
-      <div className="mt-5">
+      <div className="comment-list mt-5">
         {comments?.map((comment) => (
           <CommentItem key={comment?.id} comment={comment} />
         ))}

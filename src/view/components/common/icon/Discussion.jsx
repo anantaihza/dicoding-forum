@@ -11,6 +11,7 @@ export default function Discussion({ count }) {
         strokeWidth={1.5}
         stroke="currentColor"
         className="w-5 h-5"
+        data-testid="discussion-icon"
       >
         <path
           strokeLinecap="round"

@@ -3,6 +3,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    'cypress/globals': true,
   },
   extends: [
     'eslint:recommended',
@@ -11,6 +12,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'airbnb',
     'prettier',
+    'plugin:storybook/recommended',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parserOptions: {
@@ -23,7 +25,7 @@ module.exports = {
   settings: {
     react: { version: 'detect' },
   },
-  plugins: ['react-refresh', 'react', 'prettier'],
+  plugins: ['react-refresh', 'react', 'prettier', 'cypress'],
   rules: {
     'react/jsx-no-target-blank': 'off',
     'react-refresh/only-export-components': [

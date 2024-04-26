@@ -12,7 +12,7 @@ import CommentList from '../components/detail/CommentList';
 import ContentDetail from '../components/detail/ContentDetail';
 import ButtonAddComment from '../components/detail/ButtonAddComment';
 import { getAccessToken } from '../../utils/api/userAPI';
-import { summaryVote, isMyIdVote } from '../../utils/countVote';
+import { summaryVote, isMyIdVote } from '../../utils/CountVote';
 
 export default function Detail() {
   const { id } = useParams();

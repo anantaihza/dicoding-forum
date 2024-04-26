@@ -42,4 +42,4 @@ const createComment = async ({ threadId, content }) => {
   }
 };
 
-export default createComment;
+export { createComment, BASE_URL };

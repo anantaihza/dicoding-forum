@@ -42,6 +42,7 @@ export default function ButtonAddComment() {
         <Link
           to="/login"
           className="btn btn-primary text-white rounded-full px-6 poppins-semibold my-5"
+          aria-label="add-comment"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -64,6 +65,7 @@ export default function ButtonAddComment() {
           type="button"
           className="btn btn-primary text-white rounded-full px-6 poppins-semibold my-5"
           onClick={() => document.getElementById('add_comment').showModal()}
+          aria-label="add-comment"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

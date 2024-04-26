@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import getTimeAgo from '../../../utils/timeAgo';
+import getTimeAgo from '../../../utils/TimeAgo';
 
 export default function TitleDetail() {
   const { dataDetail } = useSelector((state) => state.threads);

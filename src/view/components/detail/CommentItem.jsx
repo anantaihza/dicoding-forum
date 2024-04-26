@@ -4,8 +4,8 @@ import parser from 'html-react-parser';
 import { useSelector } from 'react-redux';
 import UpVoteComment from '../common/icon/UpVoteComment';
 import DownVoteComment from '../common/icon/DownVoteComment';
-import getTimeAgo from '../../../utils/timeAgo';
-import { summaryVote, isMyIdVote } from '../../../utils/countVote';
+import getTimeAgo from '../../../utils/TimeAgo';
+import { summaryVote, isMyIdVote } from '../../../utils/CountVote';
 import { getAccessToken } from '../../../utils/api/userAPI';
 
 export default function CommentItem({ comment }) {
@@ -25,7 +25,7 @@ export default function CommentItem({ comment }) {
   }, [comment, myProfile]);
   return (
     <>
-      <div className="flex gap-6 flex-col md:flex-row">
+      <div className="comment-item flex gap-6 flex-col md:flex-row">
         <div className="avatar placeholder">
           <div className="w-12 h-12 rounded-full">
             <img src={comment?.owner?.avatar} alt={comment?.owner?.name} />

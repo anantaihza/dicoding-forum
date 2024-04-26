@@ -18,7 +18,7 @@ export default function ButtonCategory({ name, isSelected }) {
     <button
       type="button"
       onClick={categoryHandler}
-      className={`btn rounded-full px-4 border-primary hover:bg-primary hover:text-white ${isSelected ? 'bg-primary text-white' : 'bg-transparent text-primary'}`}
+      className={`btn btn-category rounded-full px-4 border-primary hover:bg-primary hover:text-white ${isSelected ? 'bg-primary text-white' : 'bg-transparent text-primary'}`}
     >
       {name === 'All' ? (
         <span className="truncate max-w-36">{name}</span>
@@ -30,6 +30,12 @@ export default function ButtonCategory({ name, isSelected }) {
 }
 
 ButtonCategory.propTypes = {
+  /**
+   * Category name
+   */
   name: PropType.string.isRequired,
+  /**
+   * Is category selected?
+   */
   isSelected: PropType.bool.isRequired,
 };

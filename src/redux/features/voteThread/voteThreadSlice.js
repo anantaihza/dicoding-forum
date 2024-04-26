@@ -22,7 +22,6 @@ const voteThreadSlice = createSlice({
         state.message = action.payload.message;
         if (action.payload.data) {
           state.vote = action.payload.data;
-          state.isVote = true;
         }
       })
       .addCase(upVote.rejected, (state, action) => {
@@ -61,7 +60,6 @@ const voteThreadSlice = createSlice({
         state.message = action.payload.message;
         if (action.payload.data) {
           state.vote = action.payload.data;
-          state.isVote = false;
         }
       })
       .addCase(neutralizeVote.rejected, (state, action) => {

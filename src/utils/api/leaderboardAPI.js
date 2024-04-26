@@ -32,4 +32,4 @@ const getLeaderboards = async () => {
   }
 };
 
-export default getLeaderboards;
+export { getLeaderboards, BASE_URL };
