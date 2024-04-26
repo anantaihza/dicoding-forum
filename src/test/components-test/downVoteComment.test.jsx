@@ -42,6 +42,19 @@ vi.mock('../../utils/api/userAPI', () => ({
   getAccessToken: vi.fn(),
 }));
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Component: DownVoteComment
+ *
+ *   - Should renders downvote icon and count when not logged in
+ *   - Should downvotes comment when logged in and dispatches downVote thunk
+ *   - Should downvotes comment when logged in, upVote is active and dispatches downVote thunk
+ *   - Should neutralizes comment when logged in and dispatches neutralizeVote thunk
+ *
+ */
+
 describe('DownVoteComment Component', () => {
   const idComment = 'comment-1';
   const idThread = useParams.id;
@@ -57,18 +70,21 @@ describe('DownVoteComment Component', () => {
     cleanup();
   });
 
-  it('should renders downvote icon and count when not logged in', () => {
+  it('Should renders downvote icon and count when not logged in', () => {
+    // Arrange
     getAccessToken.mockReturnValue(null);
     render(<DownVoteComment idComment={idComment} countDown={countDown} />);
 
     const downVoteIcon = screen.getByTestId('down-vote-icon');
     const countText = screen.getByText(countDown.toString());
 
+    // Assert
     expect(downVoteIcon).toBeInTheDocument();
     expect(countText).toBeInTheDocument();
   });
 
   it('Should downvotes comment when logged in and dispatches downVote thunk', async () => {
+    // Arrange
     getAccessToken.mockReturnValue('example_token');
 
     neutralizeVote.mockResolvedValue({ payload: { status: 'success' } });
@@ -90,8 +106,10 @@ describe('DownVoteComment Component', () => {
     const buttonDown = screen.getByRole('button');
     const countText = screen.getByText(countDown.toString());
 
+    // Action
     await userEvent.click(buttonDown);
 
+    // Assert
     expect(downVoteIcon).toBeInTheDocument();
     expect(buttonDown).toBeInTheDocument();
     expect(countText).toBeInTheDocument();
@@ -109,6 +127,7 @@ describe('DownVoteComment Component', () => {
   });
 
   it('Should downvotes comment when logged in, upVote is active and dispatches downVote thunk', async () => {
+    // Arrange
     getAccessToken.mockReturnValue('example_token');
 
     neutralizeVote.mockResolvedValue({ payload: { status: 'success' } });
@@ -130,8 +149,10 @@ describe('DownVoteComment Component', () => {
     const buttonDown = screen.getByRole('button');
     const countText = screen.getByText(countDown.toString());
 
+    // Action
     await userEvent.click(buttonDown);
 
+    // Assert
     expect(downVoteIcon).toBeInTheDocument();
     expect(buttonDown).toBeInTheDocument();
     expect(countText).toBeInTheDocument();
@@ -149,6 +170,7 @@ describe('DownVoteComment Component', () => {
   });
 
   it('Should neutralizes comment when logged in and dispatches neutralizeVote thunk', async () => {
+    // Arrange
     getAccessToken.mockReturnValue('example_token');
 
     neutralizeVote.mockResolvedValue({ payload: { status: 'success' } });
@@ -167,8 +189,10 @@ describe('DownVoteComment Component', () => {
     const buttonDown = screen.getByRole('button');
     const countText = screen.getByText(countDown.toString());
 
+    // Action
     await userEvent.click(buttonDown);
 
+    // Assert
     expect(downVoteIcon).toBeInTheDocument();
     expect(buttonDown).toBeInTheDocument();
     expect(countText).toBeInTheDocument();

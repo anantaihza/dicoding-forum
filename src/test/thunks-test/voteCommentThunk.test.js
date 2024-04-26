@@ -7,6 +7,25 @@ import {
 
 import * as voteCommentAPI from '../../utils/api/voteCommentAPI';
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Thunk: voteCommentThunk
+ *
+ * 1. Up Vote
+ *    - Should dispatch the correct actions on successful upVote
+ *    - Should dispatch the correct actions on failed upVote
+ *
+ * 2. Down Vote
+ *    - Should dispatch the correct actions on successful downVote
+ *    - Should dispatch the correct actions on failed downVote
+ *
+ * 3. Neutralize Vote
+ *    - Should dispatch the correct actions on successful neutralizeVote
+ *    - Should dispatch the correct actions on failed neutralizeVote
+ *
+ */
 describe('voteComment Thunk', () => {
   let dispatch;
   let getState;
@@ -38,6 +57,7 @@ describe('voteComment Thunk', () => {
     });
 
     it('Should dispatch the correct actions on successful upVote', async () => {
+      // Arrange
       const mockResponse = {
         error: false,
         status: 'success',
@@ -52,10 +72,12 @@ describe('voteComment Thunk', () => {
 
       upVoteMock.mockResolvedValueOnce(mockResponse);
 
+      // Action
       await upVote(userData, {
         headers: { Authorization: `Bearer ${mockToken}` },
       })(dispatch, getState);
 
+      // Assert
       expect(dispatch).toHaveBeenCalledWith({
         type: 'voteComment/upVote/pending',
         meta: {
@@ -77,6 +99,7 @@ describe('voteComment Thunk', () => {
     });
 
     it('Should dispatch the correct actions on failed upVote', async () => {
+      // Arrange
       const mockResponse = {
         error: true,
         status: 'failed',
@@ -86,10 +109,12 @@ describe('voteComment Thunk', () => {
 
       upVoteMock.mockRejectedValueOnce(mockResponse);
 
+      // Action
       await upVote(userData, {
         headers: { Authorization: `Bearer ${mockToken}` },
       })(dispatch, getState);
 
+      // Assert
       expect(dispatch).toHaveBeenCalledWith({
         type: 'voteComment/upVote/pending',
         meta: {
@@ -128,6 +153,7 @@ describe('voteComment Thunk', () => {
     });
 
     it('Should dispatch the correct actions on successful downVote', async () => {
+      // Arrange
       const mockResponse = {
         error: false,
         status: 'success',
@@ -142,10 +168,12 @@ describe('voteComment Thunk', () => {
 
       downVoteMock.mockResolvedValueOnce(mockResponse);
 
+      // Action
       await downVote(userData, {
         headers: { Authorization: `Bearer ${mockToken}` },
       })(dispatch, getState);
 
+      // Assert
       expect(dispatch).toHaveBeenCalledWith({
         type: 'voteComment/downVote/pending',
         meta: {
@@ -167,6 +195,7 @@ describe('voteComment Thunk', () => {
     });
 
     it('Should dispatch the correct actions on failed downVote', async () => {
+      // Arrange
       const mockResponse = {
         error: true,
         status: 'failed',
@@ -176,10 +205,12 @@ describe('voteComment Thunk', () => {
 
       downVoteMock.mockRejectedValueOnce(mockResponse);
 
+      // Action
       await downVote(userData, {
         headers: { Authorization: `Bearer ${mockToken}` },
       })(dispatch, getState);
 
+      // Assert
       expect(dispatch).toHaveBeenCalledWith({
         type: 'voteComment/downVote/pending',
         meta: {
@@ -218,6 +249,7 @@ describe('voteComment Thunk', () => {
     });
 
     it('Should dispatch the correct actions on successful neutralizeVote', async () => {
+      // Arrange
       const mockResponse = {
         error: false,
         status: 'success',
@@ -232,10 +264,12 @@ describe('voteComment Thunk', () => {
 
       neutralizeVoteMock.mockResolvedValueOnce(mockResponse);
 
+      // Action
       await neutralizeVote(userData, {
         headers: { Authorization: `Bearer ${mockToken}` },
       })(dispatch, getState);
 
+      // Assert
       expect(dispatch).toHaveBeenCalledWith({
         type: 'voteComment/neutralize/pending',
         meta: {
@@ -257,6 +291,7 @@ describe('voteComment Thunk', () => {
     });
 
     it('Should dispatch the correct actions on failed neutralizeVote', async () => {
+      // Arrange
       const mockResponse = {
         error: true,
         status: 'failed',
@@ -266,10 +301,12 @@ describe('voteComment Thunk', () => {
 
       neutralizeVoteMock.mockRejectedValueOnce(mockResponse);
 
+      // Action
       await neutralizeVote(userData, {
         headers: { Authorization: `Bearer ${mockToken}` },
       })(dispatch, getState);
 
+      // Assert
       expect(dispatch).toHaveBeenCalledWith({
         type: 'voteComment/neutralize/pending',
         meta: {

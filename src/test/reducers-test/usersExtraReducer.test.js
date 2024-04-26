@@ -2,6 +2,19 @@ import { expect, it, describe } from 'vitest';
 import usersReducer from '../../redux/features/users/usersSlice';
 import getUsers from '../../redux/features/users/usersThunk';
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Extra Reducer: usersReducer
+ *
+ * 1. getUsers
+ *    - Pending: Should return {isLoading = true, isError = false, message = null, users = null}
+ *    - Fulfilled(success): Should return {isLoading,isError = false, message = success, users = all user}
+ *    - Fulfilled(failed): Should return {isLoading = false, isError = true, message = failed}
+ *    - Rejected: Should return {isLoading = false, isError = true, message = rejected}
+ *
+ */
 describe('Users reducer test', () => {
   const initialState = {
     users: null,
@@ -13,11 +26,14 @@ describe('Users reducer test', () => {
 
   describe('getUsers', () => {
     it('Pending: Should return {isLoading = true, isError = false, message = null, users = null}', () => {
+      // Arrange
       const state = initialState;
       const action = getUsers.pending;
 
+      // Action
       const nextState = usersReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         users: null,
         profileUser: null,
@@ -28,6 +44,7 @@ describe('Users reducer test', () => {
     });
 
     it('Fulfilled(success): Should return {isLoading,isError = false, message = success, users = all user}', () => {
+      // Arrange
       const state = initialState;
       const action = getUsers.fulfilled({
         error: false,
@@ -49,8 +66,10 @@ describe('Users reducer test', () => {
         ],
       });
 
+      // Action
       const nextState = usersReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         users: [
           {
@@ -74,6 +93,7 @@ describe('Users reducer test', () => {
     });
 
     it('Fulfilled(failed): Should return {isLoading = false, isError = true, message = failed}', () => {
+      // Arrange
       const state = initialState;
       const action = getUsers.fulfilled({
         error: true,
@@ -81,8 +101,10 @@ describe('Users reducer test', () => {
         isLoading: false,
       });
 
+      // Action
       const nextState = usersReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         users: null,
         profileUser: null,
@@ -93,6 +115,7 @@ describe('Users reducer test', () => {
     });
 
     it('Rejected: Should return {isLoading = false, isError = true, message = rejected}', () => {
+      // Arrange
       const state = initialState;
       const action = getUsers.rejected({
         error: true,
@@ -100,8 +123,10 @@ describe('Users reducer test', () => {
         isLoading: false,
       });
 
+      // Action
       const nextState = usersReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         users: null,
         profileUser: null,

@@ -1,3 +1,14 @@
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * End to End: Leaderboard Page
+ *
+ * - Should display the leaderboard page correctly
+ * - Should display correct stats values
+ *
+ */
+
 describe('Leaderboard spec', () => {
   beforeEach(() => {
     cy.viewport(1280, 720);

@@ -6,6 +6,32 @@ import {
 } from '../../redux/features/threads/threadsThunk';
 import threadsReducer from '../../redux/features/threads/threadsSlice';
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Extra Reducer: threadsReducer
+ *
+ * 1. getThreads
+ *    - Pending: Should return {isLoading = true, isError = false and message null}
+ *    - Fulfilled(success): Should return {isLoading, isError = false and message success, data = Threads forum}
+ *    - Fulfilled(failed): Should return {isLoading = false, isError = true and message failed}
+ *    - Rejected: Should return {isLoading = false, isError = true and message rejected}
+ *
+ * 2. getThreadDetail
+ *    - Pending: Should return {isLoading = true, isError = false, message = null, dataDetail = null}
+ *    - Fulfilled(success): Should return {isLoading, isError = false and message = success, dataDetail = Thread detail}
+ *    - Fulfilled(failed): Should return {isLoading = false, isError = true and message = failed}
+ *    - Rejected: Should return {isLoading = false, isError = true and message = rejected}
+ *
+ * 3. addThread
+ *    - Pending: Should return {isLoading = true, isError = false, message = null, dataCreate = null}
+ *    - Fulfilled(success): Should return {isLoading, isError = false and message = success, dataCreate = Thread created}
+ *    - Fulfilled(failed): Should return {isLoading = false, isError = true and message = failed}
+ *    - Rejected: Should return {isLoading = false, isError = true and message = rejected}
+ *
+ *
+ */
 describe('Thread extraReducers test', () => {
   const initialState = {
     datas: null,
@@ -18,11 +44,14 @@ describe('Thread extraReducers test', () => {
 
   describe('getThreads', () => {
     it('Pending: Should return {isLoading = true, isError = false and message null}', () => {
+      // Arrange
       const state = initialState;
       const action = getThreads.pending;
 
+      // Action
       const nextState = threadsReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         datas: null,
         dataDetail: null,
@@ -34,6 +63,7 @@ describe('Thread extraReducers test', () => {
     });
 
     it('Fulfilled(success): Should return {isLoading, isError = false and message success, data = Threads forum}', () => {
+      // Arrange
       const state = initialState;
       const action = getThreads.fulfilled({
         error: false,
@@ -54,8 +84,10 @@ describe('Thread extraReducers test', () => {
         ],
       });
 
+      // Action
       const nextState = threadsReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         datas: [
           {
@@ -79,6 +111,7 @@ describe('Thread extraReducers test', () => {
     });
 
     it('Fulfilled(failed): Should return {isLoading = false, isError = true and message failed}', () => {
+      // Arrange
       const state = initialState;
       const action = getThreads.fulfilled({
         error: true,
@@ -86,8 +119,10 @@ describe('Thread extraReducers test', () => {
         isLoading: false,
       });
 
+      // Action
       const nextState = threadsReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         datas: null,
         dataDetail: null,
@@ -99,6 +134,7 @@ describe('Thread extraReducers test', () => {
     });
 
     it('Rejected: Should return {isLoading = false, isError = true and message rejected}', () => {
+      // Arrange
       const state = initialState;
       const action = getThreads.rejected({
         error: true,
@@ -106,8 +142,10 @@ describe('Thread extraReducers test', () => {
         isLoading: false,
       });
 
+      // Action
       const nextState = threadsReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         datas: null,
         dataDetail: null,
@@ -121,11 +159,14 @@ describe('Thread extraReducers test', () => {
 
   describe('getThreadDetail', () => {
     it('Pending: Should return {isLoading = true, isError = false, message = null, dataDetail = null}', () => {
+      // Arrange
       const state = initialState;
       const action = getThreadDetail.pending;
 
+      // Action
       const nextState = threadsReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         datas: null,
         dataDetail: null,
@@ -137,6 +178,7 @@ describe('Thread extraReducers test', () => {
     });
 
     it('Fulfilled(success): Should return {isLoading, isError = false and message = success, dataDetail = Thread detail}', () => {
+      // Arrange
       const state = initialState;
       const action = getThreadDetail.fulfilled({
         error: false,
@@ -172,8 +214,10 @@ describe('Thread extraReducers test', () => {
         },
       });
 
+      // Action
       const nextState = threadsReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         datas: null,
         dataDetail: {
@@ -212,6 +256,7 @@ describe('Thread extraReducers test', () => {
     });
 
     it('Fulfilled(failed): Should return {isLoading = false, isError = true and message = failed}', () => {
+      // Arrange
       const state = initialState;
       const action = getThreadDetail.fulfilled({
         error: true,
@@ -219,8 +264,10 @@ describe('Thread extraReducers test', () => {
         message: 'failed',
       });
 
+      // Action
       const nextState = threadsReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         datas: null,
         dataDetail: null,
@@ -232,6 +279,7 @@ describe('Thread extraReducers test', () => {
     });
 
     it('Rejected: Should return {isLoading = false, isError = true and message = rejected}', () => {
+      // Arrange
       const state = initialState;
       const action = getThreadDetail.rejected({
         error: true,
@@ -239,8 +287,10 @@ describe('Thread extraReducers test', () => {
         message: 'rejected',
       });
 
+      // Action
       const nextState = threadsReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         datas: null,
         dataDetail: null,
@@ -254,11 +304,14 @@ describe('Thread extraReducers test', () => {
 
   describe('addThread', () => {
     it('Pending: Should return {isLoading = true, isError = false, message = null, dataCreate = null}', () => {
+      // Arrange
       const state = initialState;
       const action = addThread.pending;
 
+      // Action
       const nextState = threadsReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         datas: null,
         dataDetail: null,
@@ -270,6 +323,7 @@ describe('Thread extraReducers test', () => {
     });
 
     it('Fulfilled(success): Should return {isLoading, isError = false and message = success, dataCreate = Thread created}', () => {
+      // Arrange
       const state = initialState;
       const action = addThread.fulfilled({
         error: false,
@@ -288,8 +342,10 @@ describe('Thread extraReducers test', () => {
         },
       });
 
+      // Action
       const nextState = threadsReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         datas: null,
         dataDetail: null,
@@ -311,6 +367,7 @@ describe('Thread extraReducers test', () => {
     });
 
     it('Fulfilled(failed): Should return {isLoading = false, isError = true and message = failed}', () => {
+      // Arrange
       const state = initialState;
       const action = addThread.fulfilled({
         error: true,
@@ -318,8 +375,10 @@ describe('Thread extraReducers test', () => {
         message: 'failed',
       });
 
+      // Action
       const nextState = threadsReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         datas: null,
         dataDetail: null,
@@ -331,6 +390,7 @@ describe('Thread extraReducers test', () => {
     });
 
     it('Rejected: Should return {isLoading = false, isError = true and message = rejected}', () => {
+      // Arrange
       const state = initialState;
       const action = addThread.rejected({
         error: true,
@@ -338,8 +398,10 @@ describe('Thread extraReducers test', () => {
         message: 'rejected',
       });
 
+      // Action
       const nextState = threadsReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         datas: null,
         dataDetail: null,

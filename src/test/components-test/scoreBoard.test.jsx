@@ -12,6 +12,17 @@ vi.mock('react-redux', () => ({
   useDispatch: vi.fn(),
 }));
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Component: ScoreBoard
+ *
+ *  - Should renders Title correctly
+ *  - Should renders header table correctly
+ *  - Should renders avatar table correctly
+ *
+ */
 describe('ScoreBoard Component', () => {
   beforeEach(() => {
     useDispatch.mockReturnValue(vi.fn());
@@ -44,31 +55,37 @@ describe('ScoreBoard Component', () => {
     cleanup();
   });
 
-  it('should renders Title correctly', () => {
+  it('Should renders Title correctly', () => {
+    // Arrange
     render(<ScoreBoard />);
 
     const title = screen.getByText('Klansemen Pengguna Aktif');
 
+    // Assert
     expect(title).toBeInTheDocument();
   });
 
-  it('should renders header table correctly', () => {
+  it('Should renders header table correctly', () => {
+    // Arrange
     render(<ScoreBoard />);
 
     const headers = screen.getAllByRole('columnheader');
 
+    // Assert
     expect(headers).toHaveLength(3);
     expect(headers[0]).toHaveTextContent('No');
     expect(headers[1]).toHaveTextContent('Pengguna');
     expect(headers[2]).toHaveTextContent('Skor');
   });
 
-  it('should renders avatar table correctly', () => {
+  it('Should renders avatar table correctly', () => {
+    // Arrange
     render(<ScoreBoard />);
 
     const avatarImg1 = screen.getByAltText('John Doe');
     const avatarImg2 = screen.getByAltText('Jane Doe');
 
+    // Assert
     expect(avatarImg1).toHaveAttribute(
       'src',
       'https://generated-image-url1.jpg'

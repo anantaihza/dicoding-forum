@@ -4,6 +4,17 @@ import commentReducer, {
   setMessage,
 } from '../../redux/features/comment/commentSlice';
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Reducer: commentReducer
+ *
+ * - Should return the initial state when no action
+ * - Should return a new message
+ * - Should return a new isError
+ *
+ */
 describe('Authentication reducers test', () => {
   const initialState = {
     comments: null,

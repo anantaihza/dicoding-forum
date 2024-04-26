@@ -1,3 +1,17 @@
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * End to End: Login Page
+ *
+ * - Should display the login page correctly
+ * - Should display alert when email is empty
+ * - Should display alert when password is empty
+ * - Should display error message on invalid login
+ * - Should login successfully with valid credentials
+ *
+ */
+
 describe('Login spec', () => {
   beforeEach(() => {
     cy.viewport(1280, 720);

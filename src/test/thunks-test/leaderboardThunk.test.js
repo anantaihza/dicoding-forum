@@ -3,6 +3,16 @@ import getAllLeaderboard from '../../redux/features/leaderboard/leaderboardThunk
 
 import * as leaderboardAPI from '../../utils/api/leaderboardAPI';
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Thunk: leaderboardThunk
+ *
+ * - Should dispatch the correct actions on successful get leaderboard
+ * - Should dispatch the correct actions on failed get leaderboard
+ *
+ */
 describe('Leaderboard Thunk', () => {
   let dispatch;
   let getState;
@@ -52,10 +62,13 @@ describe('Leaderboard Thunk', () => {
   });
 
   it('Should dispatch the correct actions on successful get leaderboard', async () => {
+    // Arrange
     getLeaderboardMock.mockResolvedValueOnce(mockResponse);
 
+    // Action
     await getAllLeaderboard()(dispatch, getState);
 
+    // Assert
     expect(dispatch).toHaveBeenCalledWith({
       type: 'leaderboard/getAllLeaderboard/pending',
       meta: {
@@ -75,10 +88,13 @@ describe('Leaderboard Thunk', () => {
   });
 
   it('Should dispatch the correct actions on failed get leaderboard', async () => {
+    // Arrange
     getLeaderboardMock.mockRejectedValueOnce(mockResponseFail);
 
+    // Action
     await getAllLeaderboard()(dispatch, getState);
 
+    // Assert
     expect(dispatch).toHaveBeenCalledWith({
       type: 'leaderboard/getAllLeaderboard/pending',
       meta: {

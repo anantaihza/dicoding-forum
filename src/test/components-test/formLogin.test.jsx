@@ -30,6 +30,18 @@ vi.mock('../../redux/features/auth/authThunk', () => ({
   loginUser: vi.fn(),
 }));
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Component: FormLogin
+ *
+ *   - Should render correctly
+ *   - Should handle email typing correctly
+ *   - Should handle password typing correctly
+ *   - Should call login function when login button is clicked
+ *
+ */
 describe('Form Login', () => {
   beforeEach(() => {
     useDispatch.mockReturnValue(vi.fn());
@@ -48,32 +60,41 @@ describe('Form Login', () => {
   });
 
   it('Should render correctly', () => {
+    // Arrange
     render(<FormLogin />);
 
+    // Assert
     expect(screen.getByPlaceholderText('Email')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Password')).toBeInTheDocument();
     expect(screen.getByText('Masuk')).toBeInTheDocument();
   });
 
   it('Should handle email typing correctly', async () => {
+    // Arrange
     render(<FormLogin />);
     const emailInput = screen.getByPlaceholderText('Email');
 
+    // Action
     await userEvent.type(emailInput, 'johndoe@gmail.com');
 
+    // Assert
     expect(emailInput).toHaveValue('johndoe@gmail.com');
   });
 
   it('Should handle password typing correctly', async () => {
+    // Arrange
     render(<FormLogin />);
     const passwordInput = screen.getByPlaceholderText('Password');
 
+    // Action
     await userEvent.type(passwordInput, 'password123');
 
+    // Assert
     expect(passwordInput).toHaveValue('password123');
   });
 
   it('Should call login function when login button is clicked', async () => {
+    // Arrange
     loginUser.mockResolvedValue({ payload: { status: 'success' } });
     useDispatch.mockReturnValue(loginUser);
 
@@ -83,10 +104,13 @@ describe('Form Login', () => {
     const passwordInput = screen.getByPlaceholderText('Password');
     const submitButton = screen.getByText('Masuk');
 
+    // Action
     await userEvent.type(emailInput, 'johndoe@gmail.com');
     await userEvent.type(passwordInput, 'password123');
 
     await userEvent.click(submitButton);
+
+    // Assert
     expect(loginUser).toHaveBeenCalledWith({
       email: 'johndoe@gmail.com',
       password: 'password123',

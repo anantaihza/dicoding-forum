@@ -6,16 +6,26 @@ import TitleHome from '../../view/components/home/TitleHome';
 
 expect.extend(matchers);
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Component: TitleHome
+ *
+ *   - Should renders correctly
+ */
 describe('Title Home Component', () => {
   afterEach(() => {
     cleanup();
   });
 
-  it('should render correctly', () => {
+  it('Should render correctly', () => {
+    // Arrange
     render(<TitleHome />);
 
     const titleHome = screen.getByText('Diskusi Tersedia');
 
+    // Assert
     expect(titleHome).toBeInTheDocument();
   });
 });

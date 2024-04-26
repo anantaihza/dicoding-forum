@@ -1,3 +1,34 @@
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * End to End: Detail Page
+ *
+ * - Should display the detail page correctly
+ *
+ * 1. When not logged in
+ *    a. Like and Dislike Thread
+ *       - Upvote Like should link to login when not logged in
+ *       - Downvote Like should link to login when not logged in
+ *
+ *    b. New Comment
+ *       - Should display link when not login
+ *
+ * 2. When logged in
+ *    a. Like and Dislike Thread
+ *       - Should like and neutralize like a thread
+ *       - Should dislike and neutralize dislike a thread
+ *
+ *    b. New Comment
+ *       - Should show modal
+ *       - Should add comment
+ *
+ *    c. Like and Dislike Comment
+ *       - Should like and neutralize like a comment
+ *       - Should dislike and neutralize dislike a comment
+ *
+ */
+
 describe('Detail Page', () => {
   beforeEach(() => {
     cy.viewport(1280, 720);
@@ -14,14 +45,14 @@ describe('Detail Page', () => {
 
   describe('When not logged in', () => {
     describe('Like and Dislike Thread', () => {
-      it('Like should link to login when not logged in', () => {
+      it('Upvote Like should link to login when not logged in', () => {
         cy.get('.card-body').within(() => {
           cy.get('a[aria-label="upvote"]').click();
           cy.url().should('eq', 'http://localhost:5173/login');
         });
       });
 
-      it('Like should link to login when not logged in', () => {
+      it('Downvote Like should link to login when not logged in', () => {
         cy.get('.card-body').within(() => {
           cy.get('a[aria-label="downvote"]').click();
           cy.url().should('eq', 'http://localhost:5173/login');

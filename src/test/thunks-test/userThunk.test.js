@@ -3,6 +3,16 @@ import getUsers from '../../redux/features/users/usersThunk';
 
 import * as userAPI from '../../utils/api/userAPI';
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Thunk: userThunk
+ *
+ * - Should dispatch the correct actions on successful get users
+ * - Should dispatch the correct actions on failed get users
+ *
+ */
 describe('User Thunk', () => {
   let dispatch;
   let getState;
@@ -53,10 +63,13 @@ describe('User Thunk', () => {
   });
 
   it('Should dispatch the correct actions on successful get users', async () => {
+    // Arrange
     getUsersMock.mockResolvedValueOnce(mockResponse);
 
+    // Action
     await getUsers()(dispatch, getState);
 
+    // Assert
     expect(dispatch).toHaveBeenCalledWith({
       type: 'users/getUsers/pending',
       meta: {
@@ -76,10 +89,13 @@ describe('User Thunk', () => {
   });
 
   it('Should dispatch the correct actions on failed get users', async () => {
+    // Arrange
     getUsersMock.mockRejectedValueOnce(mockResponseFail);
 
+    // Action
     await getUsers()(dispatch, getState);
 
+    // Assert
     expect(dispatch).toHaveBeenCalledWith({
       type: 'users/getUsers/pending',
       meta: {

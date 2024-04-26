@@ -2,6 +2,19 @@ import { expect, it, describe } from 'vitest';
 import leaderboardReducer from '../../redux/features/leaderboard/leaderboardSlice';
 import getAllLeaderboard from '../../redux/features/leaderboard/leaderboardThunk';
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Extra Reducer: leaderboardReducer
+ *
+ * 1. getAllLeaderboard
+ *    - Pending: Should return {isLoading = true, isError = false, message = null, listBoard = null}
+ *    - Fulfilled(success): Should return {isLoading = false, isError = false, message = success, listBoard = all leaderboard}
+ *    - Fulfilled(error): Should return {isLoading = false, isError = true, message = error, listBoard = null}
+ *    - Rejected: Should return {isLoading = false, isError = true, message = error, listBoard = null}
+ *
+ */
 describe('Leaderboard reducer test', () => {
   const initialState = {
     listBoard: null,
@@ -24,11 +37,14 @@ describe('Leaderboard reducer test', () => {
 
   describe('getAllLeaderboard', () => {
     it('Pending: Should return {isLoading = true, isError = false, message = null, listBoard = null}', () => {
+      // Arrange
       const state = initialState;
       const action = getAllLeaderboard.pending;
 
+      // Action
       const nextState = leaderboardReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         listBoard: null,
         message: null,
@@ -50,6 +66,7 @@ describe('Leaderboard reducer test', () => {
     });
 
     it('Fulfilled(success): Should return {isLoading = false, isError = false, message = success, listBoard = all leaderboard}', () => {
+      // Arrange
       const state = initialState;
       const action = getAllLeaderboard.fulfilled({
         error: false,
@@ -77,8 +94,10 @@ describe('Leaderboard reducer test', () => {
         ],
       });
 
+      // Action
       const nextState = leaderboardReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         listBoard: [
           {
@@ -119,6 +138,7 @@ describe('Leaderboard reducer test', () => {
     });
 
     it('Fulfilled(error): Should return {isLoading = false, isError = true, message = error, listBoard = null}', () => {
+      // Arrange
       const state = initialState;
       const action = getAllLeaderboard.fulfilled({
         error: true,
@@ -127,8 +147,10 @@ describe('Leaderboard reducer test', () => {
         data: null,
       });
 
+      // Action
       const nextState = leaderboardReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         listBoard: null,
         message: 'error',
@@ -150,6 +172,7 @@ describe('Leaderboard reducer test', () => {
     });
 
     it('Rejected: Should return {isLoading = false, isError = true, message = error, listBoard = null}', () => {
+      // Arrange
       const state = initialState;
       const action = getAllLeaderboard.rejected({
         error: true,
@@ -158,8 +181,10 @@ describe('Leaderboard reducer test', () => {
         data: null,
       });
 
+      // Action
       const nextState = leaderboardReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         listBoard: null,
         message: 'error',

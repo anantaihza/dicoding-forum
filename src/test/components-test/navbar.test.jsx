@@ -25,6 +25,17 @@ vi.mock('../../utils/api/userAPI', () => ({
   removeAccessToken: vi.fn(),
 }));
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Component: Navbar
+ *
+ *   - Should render correctly when user is not logged in
+ *   - Should render correctly when user is logged in
+ *   - Should handle logout correctly
+ *
+ */
 describe('Navbar Component', () => {
   beforeEach(() => {
     useDispatch.mockReturnValue(vi.fn());
@@ -44,13 +55,15 @@ describe('Navbar Component', () => {
     cleanup();
   });
 
-  it('should render correctly when user is not logged in', () => {
+  it('Should render correctly when user is not logged in', () => {
+    // Arrange
     getAccessToken.mockReturnValue(null);
     render(<Navbar />);
 
     const threadsLinks = screen.getAllByText('Threads');
     const leaderboardLinks = screen.getAllByText('Leaderboard');
 
+    // Assert
     expect(screen.getByAltText('Logo')).toBeInTheDocument();
     threadsLinks.forEach((link) => {
       expect(link).toBeInTheDocument();
@@ -62,24 +75,29 @@ describe('Navbar Component', () => {
     expect(screen.getByText('Login')).toBeInTheDocument();
   });
 
-  it('should render correctly when user is logged in', () => {
+  it('Should render correctly when user is logged in', () => {
+    // Arrange
     getAccessToken.mockReturnValue('example_token');
 
     render(<Navbar />);
 
+    // Assert
     expect(screen.getByText('Logout')).toBeInTheDocument();
     expect(screen.getByAltText('John Doe')).toBeInTheDocument();
   });
 
-  it('should handle logout correctly', async () => {
+  it('Should handle logout correctly', async () => {
+    // Arrange
     getAccessToken.mockReturnValue('example_token');
     render(<Navbar />);
 
     const logoutButton = screen.getByText('Logout');
 
+    // Action
     await userEvent.click(logoutButton);
     getAccessToken.mockReturnValue(null);
 
+    // Assert
     expect(getAccessToken()).toBe(null);
     expect(window.location.reload).toHaveBeenCalledTimes(1);
 

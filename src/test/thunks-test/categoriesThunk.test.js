@@ -4,6 +4,15 @@ import getCategories from '../../redux/features/categories/categoriesThunk';
 // getAllThread
 import * as threadAPI from '../../utils/api/threadAPI';
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Thunk: categoriesThunk
+ *
+ * - Should dispatch the correct actions on successful getCategories
+ * - Should dispatch the correct actions on failed getCategories
+ */
 describe('Categories Thunk', () => {
   let dispatch;
   let getState;
@@ -59,10 +68,13 @@ describe('Categories Thunk', () => {
   });
 
   it('Should dispatch the correct actions on successful getCategories', async () => {
+    // Arrange
     getThreadMock.mockResolvedValueOnce(mockThreadData);
 
+    // Action
     await getCategories()(dispatch, getState);
 
+    // Assert
     expect(dispatch).toHaveBeenCalledWith({
       type: 'categories/getCategories/pending',
       meta: {
@@ -82,10 +94,13 @@ describe('Categories Thunk', () => {
   });
 
   it('Should dispatch the correct actions on failed getCategories', async () => {
+    // Arrange
     getThreadMock.mockRejectedValueOnce(mockThreadDataFail);
 
+    // Action
     await getCategories()(dispatch, getState);
 
+    // Assert
     expect(dispatch).toHaveBeenCalledWith({
       type: 'categories/getCategories/pending',
       meta: {

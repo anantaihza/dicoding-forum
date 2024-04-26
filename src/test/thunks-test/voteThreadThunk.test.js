@@ -7,6 +7,25 @@ import {
 
 import * as voteThreadAPI from '../../utils/api/voteThreadAPI';
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Thunk: voteThreadThunk
+ *
+ * 1. Up Vote
+ *    - Should dispatch the correct actions on successful upVote
+ *    - Should dispatch the correct actions on failed upVote
+ *
+ * 2. Down Vote
+ *    - Should dispatch the correct actions on successful downVote
+ *    - Should dispatch the correct actions on failed downVote
+ *
+ * 3. Neutralize Vote
+ *    - Should dispatch the correct actions on successful neutralizeVote
+ *    - Should dispatch the correct actions on failed neutralizeVote
+ *
+ */
 describe('voteTreads Thunk', () => {
   let dispatch;
   let getState;
@@ -37,6 +56,7 @@ describe('voteTreads Thunk', () => {
     });
 
     it('Should dispatch the correct actions on successful upVote', async () => {
+      // Arrange
       const mockResponse = {
         error: false,
         status: 'success',
@@ -51,10 +71,12 @@ describe('voteTreads Thunk', () => {
 
       upVoteMock.mockResolvedValueOnce(mockResponse);
 
+      // Action
       await upVote(userData, {
         headers: { Authorization: `Bearer ${mockToken}` },
       })(dispatch, getState);
 
+      // Assert
       expect(dispatch).toHaveBeenCalledWith({
         type: 'voteThread/upVote/pending',
         meta: {
@@ -76,6 +98,7 @@ describe('voteTreads Thunk', () => {
     });
 
     it('Should dispatch the correct actions on failed upVote', async () => {
+      // Arrange
       const mockResponse = {
         error: true,
         status: 'failed',
@@ -85,10 +108,12 @@ describe('voteTreads Thunk', () => {
 
       upVoteMock.mockRejectedValueOnce(mockResponse);
 
+      // Action
       await upVote(userData, {
         headers: { Authorization: `Bearer ${mockToken}` },
       })(dispatch, getState);
 
+      // Assert
       expect(dispatch).toHaveBeenCalledWith({
         type: 'voteThread/upVote/pending',
         meta: {
@@ -127,6 +152,7 @@ describe('voteTreads Thunk', () => {
     });
 
     it('Should dispatch the correct actions on successful downVote', async () => {
+      // Arrange
       const mockResponse = {
         error: false,
         status: 'success',
@@ -141,10 +167,12 @@ describe('voteTreads Thunk', () => {
 
       downVoteMock.mockResolvedValueOnce(mockResponse);
 
+      // Action
       await downVote(userData, {
         headers: { Authorization: `Bearer ${mockToken}` },
       })(dispatch, getState);
 
+      // Assert
       expect(dispatch).toHaveBeenCalledWith({
         type: 'voteThread/downVote/pending',
         meta: {
@@ -166,6 +194,7 @@ describe('voteTreads Thunk', () => {
     });
 
     it('Should dispatch the correct actions on failed downVote', async () => {
+      // Arrange
       const mockResponse = {
         error: true,
         status: 'failed',
@@ -175,10 +204,12 @@ describe('voteTreads Thunk', () => {
 
       downVoteMock.mockRejectedValueOnce(mockResponse);
 
+      // Action
       await downVote(userData, {
         headers: { Authorization: `Bearer ${mockToken}` },
       })(dispatch, getState);
 
+      // Assert
       expect(dispatch).toHaveBeenCalledWith({
         type: 'voteThread/downVote/pending',
         meta: {
@@ -217,6 +248,7 @@ describe('voteTreads Thunk', () => {
     });
 
     it('Should dispatch the correct actions on successful neutralizeVote', async () => {
+      // Arrange
       const mockResponse = {
         error: false,
         status: 'success',
@@ -231,10 +263,12 @@ describe('voteTreads Thunk', () => {
 
       neutralizeVoteMock.mockResolvedValueOnce(mockResponse);
 
+      // Action
       await neutralizeVote(userData, {
         headers: { Authorization: `Bearer ${mockToken}` },
       })(dispatch, getState);
 
+      // Assert
       expect(dispatch).toHaveBeenCalledWith({
         type: 'voteThread/neutralize/pending',
         meta: {
@@ -256,6 +290,7 @@ describe('voteTreads Thunk', () => {
     });
 
     it('Should dispatch the correct actions on failed neutralizeVote', async () => {
+      // Arrange
       const mockResponse = {
         error: true,
         status: 'failed',
@@ -265,10 +300,12 @@ describe('voteTreads Thunk', () => {
 
       neutralizeVoteMock.mockRejectedValueOnce(mockResponse);
 
+      // Action
       await neutralizeVote(userData, {
         headers: { Authorization: `Bearer ${mockToken}` },
       })(dispatch, getState);
 
+      // Assert
       expect(dispatch).toHaveBeenCalledWith({
         type: 'voteThread/neutralize/pending',
         meta: {

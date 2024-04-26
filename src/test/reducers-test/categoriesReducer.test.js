@@ -3,6 +3,16 @@ import categoriesReducer, {
   setActiveCategory,
 } from '../../redux/features/categories/categoriesSlice';
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Reducer: categoriesReducer
+ *
+ * - Should return the initial state when no action
+ * - Should return a new active category
+ *
+ */
 describe('Categories reducers test', () => {
   const initialState = {
     listCategory: null,

@@ -1,3 +1,35 @@
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * End to End: Home Page
+ *
+ * - Should display the home page correctly
+ * - Should navigate to thread detail page when a card thread is clicked
+ *
+ * 1. Filter Category
+ *    a. Should filter threads when display on desktop
+ *    b. Should filter threads when display on mobile
+ *
+ * 2. When not logged in
+ *    a. New Discussion
+ *       - Should display link when not login
+ *
+ *    b. Like and Dislike
+ *       - Like should link to login when not logged in
+ *       - Dislike should link to login when not logged in
+ *
+ * 3. When logged in
+ *    a. New Discussion
+ *       - Should display button when login
+ *       - Should create new discussion
+ *
+ *    b. Like and Dislike
+ *       - Should like and like neutralize a thread when logged in
+ *       - Should dislike and dislike neutralize a thread when logged in
+ *
+ */
+
 describe('Home spec', () => {
   beforeEach(() => {
     cy.viewport(1280, 720);
@@ -14,7 +46,7 @@ describe('Home spec', () => {
     cy.get('select').should('be.visible');
   });
 
-  it('should navigate to thread detail page when a card thread is clicked', () => {
+  it('Should navigate to thread detail page when a card thread is clicked', () => {
     cy.visit('/');
     cy.get('.card-thread').first().click();
     cy.url().should('include', '/detail/');

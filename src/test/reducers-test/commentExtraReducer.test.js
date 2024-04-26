@@ -2,6 +2,19 @@ import { expect, it, describe } from 'vitest';
 import commentReducer from '../../redux/features/comment/commentSlice';
 import addComment from '../../redux/features/comment/commentThunk';
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Extra Reducer: commentReducer
+ *
+ * 1. addComment
+ *    - Pending: Should return {isLoading = true, isError = false, message = null, comments = null}
+ *    - Fulfilled(success): Should return {isLoading,isError = false, message = success, comments = comment}
+ *    - Fulfilled(error): Should return {isLoading,isError = true, message = error, comments = null}
+ *    - Rejected: Should return {isLoading,isError = true, message = error, comments = null}
+ *
+ */
 describe('Comment reducer test', () => {
   const initialState = {
     comments: null,
@@ -12,11 +25,14 @@ describe('Comment reducer test', () => {
 
   describe('addComment', () => {
     it('Pending: Should return {isLoading = true, isError = false, message = null, comments = null}', () => {
+      // Arrange
       const state = initialState;
       const action = addComment.pending;
 
+      // Action
       const nextState = commentReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         comments: null,
         message: null,
@@ -26,6 +42,7 @@ describe('Comment reducer test', () => {
     });
 
     it('Fulfilled(success): Should return {isLoading,isError = false, message = success, comments = comment}', () => {
+      // Arrange
       const state = initialState;
 
       const action = addComment.fulfilled({
@@ -46,8 +63,10 @@ describe('Comment reducer test', () => {
         },
       });
 
+      // Action
       const nextState = commentReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         comments: {
           id: 'comment-1',
@@ -68,6 +87,7 @@ describe('Comment reducer test', () => {
     });
 
     it('Fulfilled(error): Should return {isLoading,isError = true, message = error, comments = null}', () => {
+      // Arrange
       const state = initialState;
       const action = addComment.fulfilled({
         error: true,
@@ -76,8 +96,10 @@ describe('Comment reducer test', () => {
         data: null,
       });
 
+      // Action
       const nextState = commentReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         comments: null,
         message: 'error',
@@ -87,6 +109,7 @@ describe('Comment reducer test', () => {
     });
 
     it('Rejected: Should return {isLoading,isError = true, message = error, comments = null}', () => {
+      // Arrange
       const state = initialState;
       const action = addComment.rejected({
         error: true,
@@ -94,8 +117,10 @@ describe('Comment reducer test', () => {
         isLoading: false,
       });
 
+      // Action
       const nextState = commentReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         comments: null,
         message: 'error',

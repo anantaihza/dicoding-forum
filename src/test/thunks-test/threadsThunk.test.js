@@ -7,6 +7,25 @@ import {
 
 import * as threadAPI from '../../utils/api/threadAPI';
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Thunk: threadsThunk
+ *
+ * 1. Get Threads
+ *    - Should dispatch the correct actions on successful get threads
+ *    - Should dispatch the correct actions on failed get threads
+ *
+ * 2. Get Thread Detail
+ *    - Should dispatch the correct actions on successful get thread detail
+ *    - Should dispatch the correct actions on failed get thread detail
+ *
+ * 3. Add Thread
+ *    - Should dispatch the correct actions on successful add thread
+ *    - Should dispatch the correct actions on failed add thread
+ *
+ */
 describe('Thread Thunk', () => {
   let dispatch;
   let getState;
@@ -33,6 +52,7 @@ describe('Thread Thunk', () => {
     });
 
     it('Should dispatch the correct actions on successful get threads', async () => {
+      // Arrange
       const mockResponse = {
         error: false,
         status: 'success',
@@ -65,8 +85,10 @@ describe('Thread Thunk', () => {
 
       getThreadsMock.mockResolvedValueOnce(mockResponse);
 
+      // Action
       await getThreads()(dispatch, getState);
 
+      // Assert
       expect(dispatch).toHaveBeenCalledWith({
         type: 'threads/getThread/pending',
         meta: {
@@ -86,6 +108,7 @@ describe('Thread Thunk', () => {
     });
 
     it('Should dispatch the correct actions on failed get threads', async () => {
+      // Arrange
       const mockResponse = {
         error: true,
         status: 'failed',
@@ -95,8 +118,10 @@ describe('Thread Thunk', () => {
 
       getThreadsMock.mockRejectedValueOnce(mockResponse);
 
+      // Action
       await getThreads()(dispatch, getState);
 
+      // Assert
       expect(dispatch).toHaveBeenCalledWith({
         type: 'threads/getThread/pending',
         meta: {
@@ -133,6 +158,7 @@ describe('Thread Thunk', () => {
     });
 
     it('Should dispatch the correct actions on successful get thread detail', async () => {
+      // Arrange
       const mockResponse = {
         error: false,
         status: 'success',
@@ -169,8 +195,10 @@ describe('Thread Thunk', () => {
 
       getThreadDetailMock.mockResolvedValueOnce(mockResponse);
 
+      // Action
       await getThreadDetail('thread-1')(dispatch, getState);
 
+      // Assert
       expect(dispatch).toHaveBeenCalledWith({
         type: 'threads/getThreadDetail/pending',
         meta: {
@@ -192,6 +220,7 @@ describe('Thread Thunk', () => {
     });
 
     it('Should dispatch the correct actions on failed get thread detail', async () => {
+      // Arrange
       const mockResponse = {
         error: true,
         status: 'failed',
@@ -201,8 +230,10 @@ describe('Thread Thunk', () => {
 
       getThreadDetailMock.mockRejectedValueOnce(mockResponse);
 
+      // Action
       await getThreadDetail('thread-1')(dispatch, getState);
 
+      // Assert
       expect(dispatch).toHaveBeenCalledWith({
         type: 'threads/getThreadDetail/pending',
         meta: {
@@ -247,6 +278,7 @@ describe('Thread Thunk', () => {
     });
 
     it('Should dispatch the correct actions on successful add thread', async () => {
+      // Arrange
       const mockResponse = {
         error: false,
         status: 'success',
@@ -266,10 +298,12 @@ describe('Thread Thunk', () => {
 
       addThreadMock.mockResolvedValueOnce(mockResponse);
 
+      // Action
       await addThread(userData, {
         headers: { Authorization: `Bearer ${mockToken}` },
       })(dispatch, getState);
 
+      // Assert
       expect(dispatch).toHaveBeenCalledWith({
         type: 'threads/addThread/pending',
         meta: {
@@ -291,6 +325,7 @@ describe('Thread Thunk', () => {
     });
 
     it('Should dispatch the correct actions on failed add thread', async () => {
+      // Arrange
       const mockResponse = {
         error: true,
         status: 'failed',
@@ -300,10 +335,12 @@ describe('Thread Thunk', () => {
 
       addThreadMock.mockRejectedValueOnce(mockResponse);
 
+      // Action
       await addThread(userData, {
         headers: { Authorization: `Bearer ${mockToken}` },
       })(dispatch, getState);
 
+      // Assert
       expect(dispatch).toHaveBeenCalledWith({
         type: 'threads/addThread/pending',
         meta: {

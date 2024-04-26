@@ -4,6 +4,17 @@ import authReducer, {
   setMessage,
 } from '../../redux/features/auth/authSlice';
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Reducer: authReducer
+ *
+ * - Should return the initial state when no action
+ * - Should return a new message
+ * - Should return a new isError
+ *
+ */
 describe('Authentication reducers test', () => {
   const initialState = {
     data: null,

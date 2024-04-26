@@ -23,35 +23,52 @@ vi.mock('html-react-parser', async (importOriginal) => {
   };
 });
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Component: Content Detail
+ *
+ *   - Should renders parsed content from body
+ *   - Empty render body is null or undefined
+ *
+ */
+
 describe('Content Detail', () => {
   afterEach(() => {
     vi.clearAllMocks();
     cleanup();
   });
 
-  it('should renders parsed content from body', () => {
+  it('Should renders parsed content from body', () => {
+    // Arrange
     const mockDataDetail = {
       body: 'This is some <b>bold</b> and <i>italic</i> content.',
     };
     useSelector.mockReturnValueOnce({ dataDetail: mockDataDetail });
 
+    // Action
     render(<ContentDetail />);
 
     const content = screen.getByTestId('content-detail');
 
+    // Assert
     expect(content).toBeInTheDocument();
   });
 
   it('Empty render body is null or undefined', () => {
+    // Arrange
     const mockDataDetail = {
       body: null,
     };
     useSelector.mockReturnValueOnce({ dataDetail: mockDataDetail });
 
+    // Action
     render(<ContentDetail />);
 
     const content = screen.getByTestId('content-detail');
 
+    // Assert
     expect(content).toBeEmptyDOMElement();
   });
 });

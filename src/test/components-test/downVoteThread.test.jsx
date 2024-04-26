@@ -42,6 +42,18 @@ vi.mock('../../utils/api/userAPI', () => ({
   getAccessToken: vi.fn(),
 }));
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Component: DownVoteThread
+ *
+ *   - Should renders downvote icon and count when not logged in
+ *   - Should handle downvote thread when logged in
+ *   - Should handle downvote thread when logged in, upvote is active
+ *   - Should handle neutralize vote when logged in
+ *
+ */
 describe('DownVoteThread Component', () => {
   const countDown = 30;
 
@@ -55,7 +67,8 @@ describe('DownVoteThread Component', () => {
     cleanup();
   });
 
-  it('should renders downvote icon and count when not logged in', () => {
+  it('Should renders downvote icon and count when not logged in', () => {
+    // Arrange
     getAccessToken.mockReturnValue(null);
 
     render(<DownVoteThread idThread="thread-1" countDown={countDown} />);
@@ -63,11 +76,13 @@ describe('DownVoteThread Component', () => {
     const downvoteIcon = screen.getByTestId('downvote-icon');
     const countText = screen.getByText(countDown.toString());
 
+    // Assert
     expect(downvoteIcon).toBeInTheDocument();
     expect(countText).toBeInTheDocument();
   });
 
-  it('should handle downvote thread when logged in', async () => {
+  it('Should handle downvote thread when logged in', async () => {
+    // Arrange
     getAccessToken.mockReturnValue('example_token');
 
     neutralizeVote.mockResolvedValue({
@@ -97,8 +112,10 @@ describe('DownVoteThread Component', () => {
     const buttonDown = screen.getByRole('button');
     const countText = screen.getByText(countDown.toString());
 
+    // Action
     await userEvent.click(buttonDown);
 
+    // Assert
     expect(downvoteIcon).toBeInTheDocument();
     expect(buttonDown).toBeInTheDocument();
     expect(countText).toBeInTheDocument();
@@ -112,7 +129,8 @@ describe('DownVoteThread Component', () => {
     expect(toast.info).toHaveBeenCalled('Berhasil memberikan dislike');
   });
 
-  it('should handle downvote thread when logged in, upvote is active', async () => {
+  it('Should handle downvote thread when logged in, upvote is active', async () => {
+    // Arrange
     getAccessToken.mockReturnValue('example_token');
 
     neutralizeVote.mockResolvedValue({
@@ -142,8 +160,10 @@ describe('DownVoteThread Component', () => {
     const buttonDown = screen.getByRole('button');
     const countText = screen.getByText(countDown.toString());
 
+    // Action
     await userEvent.click(buttonDown);
 
+    // Assert
     expect(downvoteIcon).toBeInTheDocument();
     expect(buttonDown).toBeInTheDocument();
     expect(countText).toBeInTheDocument();
@@ -157,7 +177,8 @@ describe('DownVoteThread Component', () => {
     expect(toast.info).toHaveBeenCalled('Berhasil memberikan dislike');
   });
 
-  it('should handle neutralize vote when logged in', async () => {
+  it('Should handle neutralize vote when logged in', async () => {
+    // Arrange
     getAccessToken.mockReturnValue('example_token');
 
     neutralizeVote.mockResolvedValue({
@@ -180,8 +201,10 @@ describe('DownVoteThread Component', () => {
     const buttonDown = screen.getByRole('button');
     const countText = screen.getByText(countDown.toString());
 
+    // Action
     await userEvent.click(buttonDown);
 
+    // Assert
     expect(downvoteIcon).toBeInTheDocument();
     expect(buttonDown).toBeInTheDocument();
     expect(countText).toBeInTheDocument();

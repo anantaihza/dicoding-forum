@@ -8,6 +8,29 @@ import authReducer from '../../redux/features/auth/authSlice';
 import mockLocalStorage from '../../utils/test/mockLocalStorage';
 import { getAccessToken } from '../../utils/api/userAPI';
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Extra Reducer: authReducer
+ *
+ * 1. registerUser
+ *    - Pending: Should return {isLoading, isError = false and message null}
+ *    - Fulfilled(success): Should return {isLoading, isError = false and message success}
+ *    - Fulfilled(failed): Should return {isLoading, isError = true and message failed}
+ *    - Rejected: Should return {isLoading, isError = true and message rejected}
+ * 2. loginUser
+ *    - Pending: Should return {isLoading = true, isError = false and message null}
+ *    - Fulfilled(success): Should return {isLoading, isError = false, message success, token = "ExampleToken"}
+ *    - Fulfilled(failed): Should return {isLoading = false, isError = true and message failed}
+ *    - Rejected: Should return {isLoading = false, isError = true and message rejected}
+ * 3. getProfileUser
+ *    - Pending: Should return {isLoading = true, isError = false and message null}
+ *    - Fulfilled(success): Should return {isLoading, isError = false, message success, data = profile user}
+ *    - Fulfilled(failed): Should return {isLoading = false, isError = true and message failed}
+ *    - Rejected: Should return {isLoading = false, isError = true and message rejected}
+ *
+ */
 describe('Authentication extraReducers test', () => {
   const initialState = {
     data: null,
@@ -19,11 +42,14 @@ describe('Authentication extraReducers test', () => {
 
   describe('registerUser', () => {
     it('Pending: Should return {isLoading, isError = false and message null}', () => {
+      // Arrange
       const state = initialState;
       const action = registerUser.pending;
 
+      // Action
       const nextState = authReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         data: null,
         token: null,
@@ -34,6 +60,7 @@ describe('Authentication extraReducers test', () => {
     });
 
     it('Fulfilled(success): Should return {isLoading, isError = false and message success}', () => {
+      // Arrange
       const state = initialState;
       const action = registerUser.fulfilled({
         error: false,
@@ -41,8 +68,10 @@ describe('Authentication extraReducers test', () => {
         isLoading: false,
       });
 
+      // Action
       const nextState = authReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         data: null,
         token: null,
@@ -53,6 +82,7 @@ describe('Authentication extraReducers test', () => {
     });
 
     it('Fulfilled(failed): Should return {isLoading = false, isError = true and message failed}', () => {
+      // Arrange
       const state = initialState;
       const action = registerUser.fulfilled({
         error: true,
@@ -60,8 +90,10 @@ describe('Authentication extraReducers test', () => {
         isLoading: false,
       });
 
+      // Action
       const nextState = authReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         data: null,
         token: null,
@@ -72,6 +104,7 @@ describe('Authentication extraReducers test', () => {
     });
 
     it('Rejected: Should return {isLoading = false, isError = true and message rejected}', () => {
+      // Arrange
       const state = initialState;
       const action = registerUser.rejected({
         error: true,
@@ -79,8 +112,10 @@ describe('Authentication extraReducers test', () => {
         isLoading: false,
       });
 
+      // Action
       const nextState = authReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         data: null,
         token: null,
@@ -104,11 +139,14 @@ describe('Authentication extraReducers test', () => {
     });
 
     it('Pending: Should return {isLoading = true, isError = false and message null}', () => {
+      // Arrange
       const state = initialState;
       const action = loginUser.pending;
 
+      // Action
       const nextState = authReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         data: null,
         token: null,
@@ -119,6 +157,7 @@ describe('Authentication extraReducers test', () => {
     });
 
     it('Fulfilled(success): Should return {isLoading, isError = false, message success, token = "ExampleToken"}', () => {
+      // Arrange
       const state = initialState;
       const action = loginUser.fulfilled({
         error: false,
@@ -129,8 +168,10 @@ describe('Authentication extraReducers test', () => {
         },
       });
 
+      // Action
       const nextState = authReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         data: null,
         token: 'ExampleToken',
@@ -142,6 +183,7 @@ describe('Authentication extraReducers test', () => {
     });
 
     it('Fulfilled(failed): Should return {isLoading = false, isError = true and message failed}', () => {
+      // Arrange
       const state = initialState;
       const action = loginUser.fulfilled({
         error: true,
@@ -149,8 +191,10 @@ describe('Authentication extraReducers test', () => {
         message: 'failed to login',
       });
 
+      // Action
       const nextState = authReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         data: null,
         token: null,
@@ -161,6 +205,7 @@ describe('Authentication extraReducers test', () => {
     });
 
     it('Rejected: Should return {isLoading = false, isError = true and message rejected}', () => {
+      // Arrange
       const state = initialState;
       const action = loginUser.rejected({
         error: true,
@@ -168,8 +213,10 @@ describe('Authentication extraReducers test', () => {
         message: 'rejected',
       });
 
+      // Action
       const nextState = authReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         data: null,
         token: null,
@@ -182,11 +229,14 @@ describe('Authentication extraReducers test', () => {
 
   describe('getProfileUser', () => {
     it('Pending: Should return {isLoading = true, isError = false and message null}', () => {
+      // Arrange
       const state = initialState;
       const action = getProfileUser.pending;
 
+      // Action
       const nextState = authReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         data: null,
         token: null,
@@ -197,6 +247,7 @@ describe('Authentication extraReducers test', () => {
     });
 
     it('Fulfilled(success): Should return {isLoading, isError = false, message success, data = profile user}', () => {
+      // Arrange
       const state = initialState;
       const action = getProfileUser.fulfilled({
         error: false,
@@ -210,8 +261,10 @@ describe('Authentication extraReducers test', () => {
         },
       });
 
+      // Action
       const nextState = authReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         data: {
           id: 'john_doe',
@@ -227,6 +280,7 @@ describe('Authentication extraReducers test', () => {
     });
 
     it('Fulfilled(failed): Should return {isLoading = false, isError = true and message failed}', () => {
+      // Arrange
       const state = initialState;
       const action = getProfileUser.fulfilled({
         error: true,
@@ -234,8 +288,10 @@ describe('Authentication extraReducers test', () => {
         message: 'failed to get profile',
       });
 
+      // Action
       const nextState = authReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         data: null,
         token: null,
@@ -246,6 +302,7 @@ describe('Authentication extraReducers test', () => {
     });
 
     it('Rejected: Should return {isLoading = false, isError = true and message rejected}', () => {
+      // Arrange
       const state = initialState;
       const action = getProfileUser.rejected({
         error: true,
@@ -253,8 +310,10 @@ describe('Authentication extraReducers test', () => {
         message: 'rejected',
       });
 
+      // Action
       const nextState = authReducer(state, action);
 
+      // Assert
       expect(nextState).toEqual({
         data: null,
         token: null,

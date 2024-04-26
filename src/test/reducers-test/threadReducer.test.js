@@ -4,6 +4,16 @@ import threadReducer, {
   setMessage,
 } from '../../redux/features/threads/threadsSlice';
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Reducer: threadReducer
+ *
+ * - Should return the initial state when no action
+ * - Should return a new message
+ * - Should return a new isError
+ */
 describe('Thread reducers test', () => {
   const initialState = {
     datas: null,

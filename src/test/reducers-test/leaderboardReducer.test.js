@@ -5,6 +5,27 @@ import leaderboardReducer, {
   countTotalUsers,
 } from '../../redux/features/leaderboard/leaderboardSlice';
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Reducer: leaderboardReducer
+ *
+ * - Should return the initial state when no action
+ *
+ * 1. count High Score
+ *    - Should return 0 when listboard is null
+ *    - Should return new high score
+ *
+ * 2. count Total Score
+ *    - Should return 0 when listboard is null
+ *    - Should return new total score
+ *
+ * 3. count Total Users
+ *    - Should return 0 when listboard is null
+ *    - Should return new total users
+ *
+ */
 describe('Leaderboard reducers test', () => {
   let initialState;
 

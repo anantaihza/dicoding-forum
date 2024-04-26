@@ -19,13 +19,26 @@ vi.mock('../../utils/timeAgo', async (importOriginal) => {
   };
 });
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Component: TitleDetail
+ *
+ *  - Should renders category badge with correct content
+ *  - Should renders thread title
+ *  - Should renders owner name
+ *  - Should handle missing data
+ *
+ */
 describe('Title Detail', () => {
   afterEach(() => {
     vi.clearAllMocks();
     cleanup();
   });
 
-  it('should renders category badge with correct content', () => {
+  it('Should renders category badge with correct content', () => {
+    // Arrange
     const mockDataDetail = {
       category: 'Technology',
       title: 'The Future of AI',
@@ -37,10 +50,13 @@ describe('Title Detail', () => {
     render(<TitleDetail />);
 
     const categoryBadge = screen.getByText('#Technology');
+
+    // Assert
     expect(categoryBadge).toBeInTheDocument();
   });
 
-  it('should renders thread title', () => {
+  it('Should renders thread title', () => {
+    // Arrange
     const mockDataDetail = {
       category: 'Science',
       title: 'Exploring the Universe',
@@ -52,10 +68,13 @@ describe('Title Detail', () => {
     render(<TitleDetail />);
 
     const threadTitle = screen.getByText('Exploring the Universe');
+
+    // Assert
     expect(threadTitle).toBeInTheDocument();
   });
 
-  it('should renders owner name', () => {
+  it('Should renders owner name', () => {
+    // Arrange
     const mockDataDetail = {
       category: 'History',
       title: 'Lessons from the Past',
@@ -67,10 +86,13 @@ describe('Title Detail', () => {
     render(<TitleDetail />);
 
     const ownerName = screen.getByText('Bob Brown');
+
+    // Assert
     expect(ownerName).toBeInTheDocument();
   });
 
-  it('should handle missing data', () => {
+  it('Should handle missing data', () => {
+    // Arrange
     useSelector.mockReturnValueOnce({ dataDetail: {} });
 
     render(<TitleDetail />);
@@ -78,6 +100,7 @@ describe('Title Detail', () => {
     const categoryBadge = screen.queryByText('#Technology');
     const threadTitle = screen.queryByText('Exploring the Universe');
 
+    // Assert
     expect(categoryBadge).not.toBeInTheDocument();
     expect(threadTitle).not.toBeInTheDocument();
   });

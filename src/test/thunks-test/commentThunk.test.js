@@ -3,6 +3,16 @@ import addComment from '../../redux/features/comment/commentThunk';
 
 import * as commentAPI from '../../utils/api/commentAPI';
 
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * Thunk: commentThunk
+ *
+ * - Should dispatch the correct actions on successful add comment
+ * - Should dispatch the correct actions on failed add comment
+ *
+ */
 describe('Comment Thunk', () => {
   let dispatch;
   let getState;
@@ -49,12 +59,15 @@ describe('Comment Thunk', () => {
   });
 
   it('Should dispatch the correct actions on successful add comment', async () => {
+    // Arrange
     getCommentMock.mockResolvedValueOnce(mockResponse);
 
+    // Action
     await addComment(userData, {
       headers: { Authorization: `Bearer ${mockToken}` },
     })(dispatch, getState);
 
+    // Assert
     expect(dispatch).toHaveBeenCalledWith({
       type: 'comment/addComment/pending',
       meta: {
@@ -76,12 +89,15 @@ describe('Comment Thunk', () => {
   });
 
   it('Should dispatch the correct actions on failed add comment', async () => {
+    // Arrange
     getCommentMock.mockRejectedValueOnce(mockResponseFail);
 
+    // Action
     await addComment(userData, {
       headers: { Authorization: `Bearer ${mockToken}` },
     })(dispatch, getState);
 
+    // Assert
     expect(dispatch).toHaveBeenCalledWith({
       type: 'comment/addComment/pending',
       meta: {

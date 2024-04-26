@@ -1,3 +1,19 @@
+/**
+ *
+ * SKENARIO TESTING
+ *
+ * End to End: Register Page
+ *
+ * - Should display the register page correctly
+ * - Should display alert when name is empty
+ * - Should display alert when email is empty
+ * - Should display alert when password is empty
+ * - Should display alert when retype password is empty
+ * - Should display warning message when password does not match
+ * - Should display error message on invalid register when email is already registered
+ *
+ */
+
 describe('Register spec', () => {
   beforeEach(() => {
     cy.viewport(1280, 720);
