@@ -15,17 +15,9 @@
  *       - Should display link when not login
  *
  * 2. When logged in
- *    a. Like and Dislike Thread
- *       - Should like and neutralize like a thread
- *       - Should dislike and neutralize dislike a thread
- *
- *    b. New Comment
+ *    a. New Comment
  *       - Should show modal
  *       - Should add comment
- *
- *    c. Like and Dislike Comment
- *       - Should like and neutralize like a comment
- *       - Should dislike and neutralize dislike a comment
  *
  */
 
@@ -90,7 +82,7 @@ describe('Detail Page', () => {
         'http://localhost:5173/detail/thread-Np47p4jhUXYhrhRn'
       );
 
-      cy.wait(5000);
+      cy.wait(2000);
     });
 
     describe('New Comment', () => {

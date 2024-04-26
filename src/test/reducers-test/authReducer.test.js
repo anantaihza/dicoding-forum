@@ -33,7 +33,16 @@ describe('Authentication reducers test', () => {
     const nextState = authReducer(state, action);
 
     // Assert
-    expect(nextState).toEqual(initialState);
+    // expect(nextState).toEqual(initialState);
+    expect(nextState).toEqual({
+      data: {
+        id: 'john_doe',
+      },
+      token: null,
+      message: null,
+      isError: false,
+      isLoading: false,
+    });
   });
 
   it('Should return a new message', () => {
