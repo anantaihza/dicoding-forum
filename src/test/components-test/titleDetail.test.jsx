@@ -15,7 +15,8 @@ vi.mock('../../utils/timeAgo', async (importOriginal) => {
   const actual = await importOriginal();
   return {
     ...actual,
-    getTimeAgo: vi.fn().mockReturnValue('2 hari lalu'),
+    getTimeAgo: vi.fn(),
+    // getTimeAgo: vi.fn().mockReturnValue('2 hari lalu'),
   };
 });
 
