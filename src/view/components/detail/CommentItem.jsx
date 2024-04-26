@@ -4,7 +4,7 @@ import parser from 'html-react-parser';
 import { useSelector } from 'react-redux';
 import UpVoteComment from '../common/icon/UpVoteComment';
 import DownVoteComment from '../common/icon/DownVoteComment';
-import getTimeAgo from '../../../utils/timeAgo';
+import getTimeAgo from '../../../utils/TimeAgo';
 import { summaryVote, isMyIdVote } from '../../../utils/countVote';
 import { getAccessToken } from '../../../utils/api/userAPI';
 

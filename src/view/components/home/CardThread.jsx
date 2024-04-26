@@ -7,7 +7,7 @@ import { getProfileUser } from '../../../redux/features/auth/authThunk';
 import UpVoteThread from '../common/icon/UpVoteThread';
 import DownVoteThread from '../common/icon/DownVoteThread';
 import Discussion from '../common/icon/Discussion';
-import getTimeAgo from '../../../utils/timeAgo';
+import getTimeAgo from '../../../utils/TimeAgo';
 import getProfileUserThread from '../../../utils/profileUser';
 import { summaryVote, isMyIdVote } from '../../../utils/countVote';
 import { getAccessToken } from '../../../utils/api/userAPI';
